@@ -55,5 +55,6 @@ namespace ConcultancyCRM.Models
         public string VoucherNumber { get; set; }
         [MaxLength(255)]
         public string Delivery { get; set; }
+        public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
     }
 }

@@ -19,13 +19,7 @@ namespace ConcultancyCRM.Models
         public string UserId { get; set; }
         public bool IsAdmin { get; set; }
         public bool IsSalesRepresentative { get; set; }
+        public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
     }
-    public class AssignedLeads
-    {
-        public int Id { get; set; }
-        public int EmployeeId { get; set; }
-        public int LeadInfoId { get; set; }
-        public virtual ICollection<Employee> Employee { get; set; }
-        public virtual ICollection<LeadInfo> LeadInfo { get; set; }
-    }
+   
 }

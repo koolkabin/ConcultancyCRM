@@ -34,5 +34,12 @@ namespace ConcultancyCRM.Models
         {
             base.OnModelCreating(modelBuilder);
         }
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<LeadInfo> LeadInfo { get; set; }
+        public DbSet<AssignedLeads> AssignedLeads { get; set; }
+        public DbSet<LeadStatus> LeadStatus { get; set; }
+        public DbSet<LeadComments> LeadComments { get; set; }
+
     }
 }
