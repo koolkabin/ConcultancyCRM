@@ -7,14 +7,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ConcultancyCRM.Models
 {
-    public class ApplicationUser : IdentityUser<string>
-    {
-        public bool IsActive { get; set; }
-        public bool IsDeleted { get; set; }
-        public bool IsLoginEnabled { get; set; }
-        public DateTime RegisteredDate { get; set; }
-
-    }
     public class MyDBContext : IdentityDbContext<ApplicationUser, IdentityRole, string>
     {
         private readonly IConfiguration _myAppSettingsConfig;

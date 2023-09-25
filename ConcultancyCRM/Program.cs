@@ -1,6 +1,10 @@
 using ConcultancyCRM.Models;
+using ConcultancyCRM.StaticHelpers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +23,8 @@ builder.Services.AddDbContext<MyDBContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<MyDBContext>()
         .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<FlashBag, FlashBag>();
 
 builder.Services.AddSession(options =>
 {

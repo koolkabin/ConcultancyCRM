@@ -1,35 +1,34 @@
-﻿using ConcultancyCRM.Extensions;
+﻿using Newtonsoft.Json;
 
 namespace ConcultancyCRM.StaticHelpers
 {
-    public static class SessionHelper
-    {
-        public static SessionInfo GetSession()
-        {
-            return new SessionInfo()
-            {
-                EmployeeId = 1,
-                EmpName = "StaticAdmin",
-                UserName = "SuperAdmin"
-            };
-        }
-        public static bool SetSession(HttpContext context, SessionInfo Data)
-        {
-            context.Session.Set("LoggedInUser", Data);
-            return true;
-        }
-    }
-    public class SessionInfo
-    {
-        public int EmployeeId { get; set; }
-        public string EmpName { get; set; }
-        public string UserName { get; set; }
-    }
     public static class ViewHelper
     {
         public static string GetDate(DateTime date)
         {
             return date.ToString("yyyy/MM/dd");
+        }
+    }
+
+    public class FlashBag
+    {
+        private bool Status { get; set; } = false;
+        private string Message { get; set; } = "";
+
+        public void SetMessage(bool key, string value)
+        {
+            Status = key;
+            Message = value;
+        }
+
+        public object GetMessage()
+        {
+            string c = Status ? "success" : "danger";
+            return $"<div class='alert alert-{c}'>{Message}</div>";
+        }
+
+        public void ClearTempData()
+        {
         }
     }
 }
