@@ -40,6 +40,9 @@ namespace ConcultancyCRM.Models
         public DbSet<AssignedLeads> AssignedLeads { get; set; }
         public DbSet<LeadStatus> LeadStatus { get; set; }
         public DbSet<LeadComments> LeadComments { get; set; }
+        public DbSet<LeaveRequest> LeaveRequests { get; set; }
+        public DbSet<Designation> Designations { get; set; }
+        public DbSet<EmployeeHRDetail> EmployeeHRDetails { get; set; }
 
     }
 }

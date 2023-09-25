@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ConcultancyCRM.Models
 {
@@ -21,5 +22,4 @@ namespace ConcultancyCRM.Models
         public bool IsSalesRepresentative { get; set; }
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
     }
-   
 }
