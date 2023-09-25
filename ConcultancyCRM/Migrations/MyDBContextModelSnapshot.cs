@@ -126,7 +126,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasIndex("LeadInfoId");
 
-                    b.ToTable("AssignedLeads");
+                    b.ToTable("AssignedLeads", (string)null);
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.Designation", b =>
@@ -148,7 +148,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Designations");
+                    b.ToTable("Designations", (string)null);
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.Employee", b =>
@@ -195,7 +195,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.EmployeeHRDetail", b =>
@@ -210,7 +210,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasIndex("DesignationID");
 
-                    b.ToTable("EmployeeHRDetails");
+                    b.ToTable("EmployeeHRDetails", (string)null);
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.LeadComments", b =>
@@ -244,7 +244,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasIndex("LeadInfoId");
 
-                    b.ToTable("LeadComments");
+                    b.ToTable("LeadComments", (string)null);
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.LeadInfo", b =>
@@ -361,7 +361,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LeadInfo");
+                    b.ToTable("LeadInfo", (string)null);
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.LeadStatus", b =>
@@ -381,7 +381,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LeadStatus");
+                    b.ToTable("LeadStatus", (string)null);
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.LeaveRequest", b =>
@@ -420,7 +420,7 @@ namespace ConcultancyCRM.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("LeaveRequests");
+                    b.ToTable("LeaveRequests", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

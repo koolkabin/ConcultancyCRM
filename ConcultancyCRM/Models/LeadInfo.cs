@@ -55,6 +55,8 @@ namespace ConcultancyCRM.Models
         public string VoucherNumber { get; set; }
         [MaxLength(255)]
         public string Delivery { get; set; }
+        public enumLeadStatus LeadStatus { get; set; } = enumLeadStatus.Pending;
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
+        public virtual ICollection<LeadComments> LeadComments { get; set; }
     }
 }

@@ -6,90 +6,93 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConcultancyCRM.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace ConcultancyCRM.Controllers
 {
-    [Authorize]
-    public class EmployeesController : _ABSAuthenticatedController
+    public class LeaveRequestsController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;
 
-        public EmployeesController(MyDBContext context)
+        public LeaveRequestsController(MyDBContext context)
         {
             _context = context;
         }
 
-        // GET: Employees
+        // GET: LeaveRequests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.ToListAsync());
+            var myDBContext = _context.LeaveRequests.Include(l => l.Employee);
+            return View(await myDBContext.ToListAsync());
         }
 
-        // GET: Employees/Details/5
+        // GET: LeaveRequests/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Employees == null)
+            if (id == null || _context.LeaveRequests == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.Employees
+            var leaveRequest = await _context.LeaveRequests
+                .Include(l => l.Employee)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (employee == null)
+            if (leaveRequest == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(leaveRequest);
         }
 
-        // GET: Employees/Create
+        // GET: LeaveRequests/Create
         public IActionResult Create()
         {
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id");
             return View();
         }
 
-        // POST: Employees/Create
+        // POST: LeaveRequests/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Address,Mobile,Email,Status,Deleted,JoinDate,UserId,IsAdmin,IsSalesRepresentative")] Employee employee)
+        public async Task<IActionResult> Create([Bind("Id,EmployeeId,RequestDate,LeaveRemarks,IsApproved,ApprovedByUserName,ApprovedDate,FromDate,ToDate")] LeaveRequest leaveRequest)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
+                _context.Add(leaveRequest);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", leaveRequest.EmployeeId);
+            return View(leaveRequest);
         }
 
-        // GET: Employees/Edit/5
+        // GET: LeaveRequests/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Employees == null)
+            if (id == null || _context.LeaveRequests == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee == null)
+            var leaveRequest = await _context.LeaveRequests.FindAsync(id);
+            if (leaveRequest == null)
             {
                 return NotFound();
             }
-            return View(employee);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", leaveRequest.EmployeeId);
+            return View(leaveRequest);
         }
 
-        // POST: Employees/Edit/5
+        // POST: LeaveRequests/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,Mobile,Email,Status,Deleted,JoinDate,UserId,IsAdmin,IsSalesRepresentative")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,EmployeeId,RequestDate,LeaveRemarks,IsApproved,ApprovedByUserName,ApprovedDate,FromDate,ToDate")] LeaveRequest leaveRequest)
         {
-            if (id != employee.Id)
+            if (id != leaveRequest.Id)
             {
                 return NotFound();
             }
@@ -98,12 +101,12 @@ namespace ConcultancyCRM.Controllers
             {
                 try
                 {
-                    _context.Update(employee);
+                    _context.Update(leaveRequest);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(employee.Id))
+                    if (!LeaveRequestExists(leaveRequest.Id))
                     {
                         return NotFound();
                     }
@@ -114,49 +117,52 @@ namespace ConcultancyCRM.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            ViewData["EmployeeId"] = new SelectList(_context.Employees, "Id", "Id", leaveRequest.EmployeeId);
+            return View(leaveRequest);
         }
 
-        // GET: Employees/Delete/5
+        // GET: LeaveRequests/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Employees == null)
+            if (id == null || _context.LeaveRequests == null)
             {
                 return NotFound();
             }
 
-            var employee = await _context.Employees
+            var leaveRequest = await _context.LeaveRequests
+                .Include(l => l.Employee)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (employee == null)
+            if (leaveRequest == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(leaveRequest);
         }
 
-        // POST: Employees/Delete/5
+        // POST: LeaveRequests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Employees == null)
+            if (_context.LeaveRequests == null)
             {
-                return Problem("Entity set 'MyDBContext.Employees'  is null.");
+                return Problem("Entity set 'MyDBContext.LeaveRequests'  is null.");
             }
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee != null)
+            var leaveRequest = await _context.LeaveRequests.FindAsync(id);
+            if (leaveRequest != null)
             {
-                _context.Employees.Remove(employee);
+                _context.LeaveRequests.Remove(leaveRequest);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmployeeExists(int id)
+        private bool LeaveRequestExists(int id)
         {
-            return _context.Employees.Any(e => e.Id == id);
+            return _context.LeaveRequests.Any(e => e.Id == id);
         }
+        
     }
 }

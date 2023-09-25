@@ -37,6 +37,7 @@ namespace ConcultancyCRM.Controllers
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
+            
             //Teacher ValidUser = _context.Teachers
             //    .Where(x => x.TeacherName == username && x.Telephone == password)
             //    .FirstOrDefault();

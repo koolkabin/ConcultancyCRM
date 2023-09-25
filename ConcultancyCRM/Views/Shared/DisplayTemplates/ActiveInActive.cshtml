@@ -1,0 +1,9 @@
+﻿@model bool?
+@if (Model.HasValue && Model.Value)
+{
+    <span class="badge badge-success">Active</span>
+}
+else
+{
+    <span class="badge badge-danger">In-Active</span>
+}
