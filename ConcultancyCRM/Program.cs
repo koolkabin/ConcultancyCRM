@@ -1,10 +1,8 @@
 using ConcultancyCRM.Models;
+using ConcultancyCRM.Startup;
 using ConcultancyCRM.StaticHelpers;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,5 +54,7 @@ app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+BootStrap.Init(configuration);
 
 app.Run();

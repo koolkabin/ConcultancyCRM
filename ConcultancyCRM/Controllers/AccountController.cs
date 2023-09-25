@@ -3,10 +3,12 @@ using ConcultancyCRM.Models;
 using ConcultancyCRM.StaticHelpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Transactions;
 
 namespace ConcultancyCRM.Controllers
 {
@@ -44,7 +46,12 @@ namespace ConcultancyCRM.Controllers
             {
 
                 var user = await _userManager.FindByEmailAsync(username);
-                if (user == null || await _userManager.CheckPasswordAsync(user, password))
+                if (user == null)
+                {
+                    throw new Exception("Invalid User/Password.");
+                }
+                var checkRes = await _signInManager.PasswordSignInAsync(user, password, false, false);
+                if (!checkRes.Succeeded)
                 {
                     throw new Exception("Invalid User/Password.");
                 }
@@ -112,6 +119,53 @@ namespace ConcultancyCRM.Controllers
                 );
 
             return token;
+        }
+        public async Task<IActionResult> InstallApplciation()
+        {
+            try
+            {
+                foreach (var item in Enum.GetValues(typeof(enumUserType)))
+                {
+                    if (!await _roleManager.RoleExistsAsync(item.ToString()))
+                    {
+                        await _roleManager.CreateAsync(new IdentityRole() { Name = item.ToString() });
+                    }
+                }
+                var supUser = await _userManager.FindByEmailAsync("superadmin@gmail.com");
+                if (supUser == null)
+                {
+                    var res = await _userManager.CreateAsync(new ApplicationUser()
+                    {
+                        Email = "superadmin@gmail.com",
+                        UserName = "superadmin@gmail.com",
+                        Id = Guid.NewGuid().ToString(),
+                        IsActive = true,
+                        IsDeleted = false,
+                        UserType = enumUserType.SuperAdmin,
+                        RegisteredDate = DateTime.UtcNow
+                    });
+                    if (res != null && res.Succeeded)
+                    {
+                        var uRec = await _userManager.FindByEmailAsync("superadmin@gmail.com");
+                        var pres = await _userManager.AddPasswordAsync(uRec, "Admin@123");
+                        await _userManager.AddToRolesAsync(uRec,
+                            new string[] {
+                                enumUserType.SuperAdmin.ToString(),
+                                enumUserType.GeneralAdmin.ToString()
+                            });
+                    }
+                    else
+                    {
+                        throw new Exception("Error while creating user...");
+                    }
+                }
+
+                return Content("Installation Completed.");
+            }
+            catch (Exception ex)
+            {
+                return Content("Installation Failed with error: " + ex.Message);
+            }
         }
     }
 }

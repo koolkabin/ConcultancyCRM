@@ -10,7 +10,9 @@
         public static string GetMessage(this HttpContext context)
         {
             string c = context.Session.Get<bool>("status") ? "success" : "danger";
-            string msg = $"<div class='alert alert-{c}'>{context.Session.Get("msg")}</div>";
+            string m = context.Session.Get<string>("msg");
+            if (string.IsNullOrEmpty(m) || m.Length <= 0) { return ""; }
+            string msg = $"<div class='alert alert-{c}'>{m}</div>";
             context.Session.Remove("msg");
             context.Session.Remove("status");
             return msg;
