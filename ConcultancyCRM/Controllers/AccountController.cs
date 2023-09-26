@@ -121,6 +121,7 @@ namespace ConcultancyCRM.Controllers
 
             return token;
         }
+       
         public async Task<IActionResult> InstallApplciation()
         {
             try
@@ -168,5 +169,6 @@ namespace ConcultancyCRM.Controllers
                 return Content("Installation Failed with error: " + ex.Message);
             }
         }
+       
     }
 }
