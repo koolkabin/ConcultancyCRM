@@ -11,7 +11,7 @@ namespace ConcultancyCRM.StaticHelpers
         }
         public static bool SetSession(HttpContext context, SessionInfo Data)
         {
-            context.Session.Set("LoggedInUser", Data);
+            context.Session.Set(key, Data);
             return true;
         }
        
