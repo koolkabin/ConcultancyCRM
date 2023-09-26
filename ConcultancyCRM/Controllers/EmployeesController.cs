@@ -56,6 +56,7 @@ namespace ConcultancyCRM.Controllers
         {
             return View();
         }
+        
         private async Task<ApplicationUser> CreateRelatedIdentityUser(VMEmployeeCreate Data)
         {
             var user = new ApplicationUser { UserName = Data.Email, Email = Data.Email, UserType = enumUserType.SalesRepresentative };
@@ -85,7 +86,6 @@ namespace ConcultancyCRM.Controllers
                 throw new Exception("User creation failed. " + allErrMsg);
             }
         }
-
         // POST: Employees/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -115,7 +115,6 @@ namespace ConcultancyCRM.Controllers
             });
             await _context.SaveChangesAsync();
         }
-
         // GET: Employees/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
