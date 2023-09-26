@@ -35,6 +35,6 @@ namespace ConcultancyCRM.Models
         public DbSet<LeaveRequest> LeaveRequests { get; set; }
         public DbSet<Designation> Designations { get; set; }
         public DbSet<EmployeeHRDetail> EmployeeHRDetails { get; set; }
-
+        public DbSet<AppUserEmployeeInfo> AppUserEmployees { get; set; }
     }
 }

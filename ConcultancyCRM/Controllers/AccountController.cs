@@ -83,12 +83,13 @@ namespace ConcultancyCRM.Controllers
 
 
                 //find related user
-                if (user.RelatedId.HasValue)
+                _context.Entry(user).Reference(x => x.AppUserEmployeeInfo).Load();
+                if (user.AppUserEmployeeInfo != null)
                 {
-                    var relEmp = _context.Employees.Find(user.RelatedId);
+                    var relEmp = _context.Employees.Find(user.AppUserEmployeeInfo.EmployeeId);
                     if (relEmp != null)
                     {
-                        result.EmployeeId = user.RelatedId.Value;
+                        result.EmployeeId = relEmp.Id;
                         result.EmpName = relEmp.Name;
                     }
                 }
