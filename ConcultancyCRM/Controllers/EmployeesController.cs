@@ -137,7 +137,7 @@ namespace ConcultancyCRM.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Address,Mobile,Email,Status,Deleted,JoinDate,UserId,IsAdmin,IsSalesRepresentative")] Employee employee)
+        public async Task<IActionResult> Edit(int id, Employee employee)
         {
             if (id != employee.Id)
             {
