@@ -1,4 +1,6 @@
 using ConcultancyCRM.Models;
+using ConcultancyCRM.Startup;
+using ConcultancyCRM.StaticHelpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +21,8 @@ builder.Services.AddDbContext<MyDBContext>(options =>
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
         .AddEntityFrameworkStores<MyDBContext>()
         .AddDefaultTokenProviders();
+
+builder.Services.AddScoped<FlashBag, FlashBag>();
 
 builder.Services.AddSession(options =>
 {
@@ -50,5 +54,7 @@ app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+BootStrap.Init(configuration);
 
 app.Run();

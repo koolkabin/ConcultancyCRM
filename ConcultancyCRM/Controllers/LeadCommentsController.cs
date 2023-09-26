@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ConcultancyCRM.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using ConcultancyCRM.Models;
 
 namespace ConcultancyCRM.Controllers
 {
-    public class LeadCommentsController : Controller
+    [Authorize]
+    public class LeadCommentsController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;
 
@@ -160,14 +158,14 @@ namespace ConcultancyCRM.Controllers
             {
                 _context.LeadComments.Remove(leadComments);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool LeadCommentsExists(int id)
         {
-          return _context.LeadComments.Any(e => e.Id == id);
+            return _context.LeadComments.Any(e => e.Id == id);
         }
     }
 }

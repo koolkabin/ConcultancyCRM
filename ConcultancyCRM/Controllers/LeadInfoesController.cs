@@ -9,7 +9,7 @@ using ConcultancyCRM.Models;
 
 namespace ConcultancyCRM.Controllers
 {
-    public class LeadInfoesController : Controller
+    public class LeadInfoesController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;
 
@@ -21,7 +21,13 @@ namespace ConcultancyCRM.Controllers
         // GET: LeadInfoes
         public async Task<IActionResult> Index()
         {
-              return View(await _context.LeadInfo.ToListAsync());
+            return View(await _context.LeadInfo.ToListAsync());
+        }
+        public async Task<IActionResult> UnAssignedLeads()
+        {
+            return View(await _context.LeadInfo
+                .Where(x => x.AssignedLeads == null)
+                .ToListAsync());
         }
 
         // GET: LeadInfoes/Details/5
@@ -147,14 +153,46 @@ namespace ConcultancyCRM.Controllers
             {
                 _context.LeadInfo.Remove(leadInfo);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool LeadInfoExists(int id)
         {
-          return _context.LeadInfo.Any(e => e.Id == id);
+            return _context.LeadInfo.Any(e => e.Id == id);
+        }
+        public async Task<IActionResult> SaveComment(LeadComments Data)
+        {
+            var oldLead = _context.LeadInfo.Find(Data.LeadInfoId);
+            if (oldLead == null)
+            {
+                throw new Exception("Invalid Old Lead.");
+            }
+            Data.EmployeeID = _ActiveSession.EmployeeId;
+            Data.EmpName = _ActiveSession.EmpName;
+            Data.TxnDate = DateTime.Now;
+            oldLead.LeadComments.Add(Data);
+            oldLead.LeadStatus = Data.Status;
+            _context.Entry(oldLead).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details", new { id = Data.LeadInfo });
+        }
+        public async Task<IActionResult> AssignLead(AssignedLeads Data)
+        {
+            var oldLead = _context.LeadInfo.Find(Data.LeadInfoId);
+            if (oldLead == null)
+            {
+                throw new Exception("Invalid Old Lead.");
+            }
+            //Data. = 0;
+            Data.AssignedByName = _ActiveSession.UserName;
+            Data.AssignedDate = DateTime.Now;
+
+            oldLead.AssignedLeads.Add(Data);
+            _context.Entry(oldLead).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Details", new { id = Data.LeadInfo });
         }
     }
 }

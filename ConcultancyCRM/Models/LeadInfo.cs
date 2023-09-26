@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConcultancyCRM.Models
 {
@@ -55,6 +56,20 @@ namespace ConcultancyCRM.Models
         public string VoucherNumber { get; set; }
         [MaxLength(255)]
         public string Delivery { get; set; }
+        public enumLeadStatus LeadStatus { get; set; } = enumLeadStatus.Pending;
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
+        public virtual ICollection<LeadComments> LeadComments { get; set; }
+
+
+        [NotMapped]
+        public AssignedLeads LastRecord => AssignedLeads.Any() ? AssignedLeads.Last() : new AssignedLeads();
+        //[NotMapped]
+        public bool CanComment(int EmpId) => LastRecord.EmployeeId == EmpId;
+
+        public LeadInfo()
+        {
+            AssignedLeads = new HashSet<AssignedLeads>();
+            LeadComments = new HashSet<LeadComments>();
+        }
     }
 }

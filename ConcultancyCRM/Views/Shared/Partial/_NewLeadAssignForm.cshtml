@@ -1,0 +1,31 @@
+﻿@model ConcultancyCRM.Models.LeadInfo
+@using (Html.BeginForm("AssignLead", "LeadInfoes", FormMethod.Post))
+{
+    <input type="hidden" name="LeadInfoId" value="@Model.Id" />
+    <div class="row">
+        <label class="col-sm-3">Employee</label>
+        <div class="col-sm-9">
+            <select name="Status" class="form-control">
+                <option value="0">Ram</option>
+                <option value="1">Shyam</option>
+                <option value="2">Hari</option>
+                <option value="3">Sita</option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-3">Comments</label>
+        <div class="col-sm-9">
+            <input type="text" name="Description" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-sm-3"></label>
+        <div class="col-sm-9">
+            <button class="btn btn-success">
+                <i class="fa fa-plane"></i>
+                Save
+            </button>
+        </div>
+    </div>
+}

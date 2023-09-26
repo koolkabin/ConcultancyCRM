@@ -4,6 +4,7 @@ using ConcultancyCRM.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcultancyCRM.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230925182407_ChangesInUserRelatedFields")]
+    partial class ChangesInUserRelatedFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,22 +24,6 @@ namespace ConcultancyCRM.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ConcultancyCRM.Models.AppUserEmployeeInfo", b =>
-                {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserId");
-
-                    b.HasIndex("EmployeeId")
-                        .IsUnique();
-
-                    b.ToTable("AppUserEmployees");
-                });
 
             modelBuilder.Entity("ConcultancyCRM.Models.ApplicationUser", b =>
                 {
@@ -91,6 +78,9 @@ namespace ConcultancyCRM.Migrations
 
                     b.Property<DateTime>("RegisteredDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("RelatedId")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
@@ -578,25 +568,6 @@ namespace ConcultancyCRM.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ConcultancyCRM.Models.AppUserEmployeeInfo", b =>
-                {
-                    b.HasOne("ConcultancyCRM.Models.Employee", "Employee")
-                        .WithOne("AppUserEmployeeInfo")
-                        .HasForeignKey("ConcultancyCRM.Models.AppUserEmployeeInfo", "EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ConcultancyCRM.Models.ApplicationUser", "ApplicationUser")
-                        .WithOne("AppUserEmployeeInfo")
-                        .HasForeignKey("ConcultancyCRM.Models.AppUserEmployeeInfo", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ApplicationUser");
-
-                    b.Navigation("Employee");
-                });
-
             modelBuilder.Entity("ConcultancyCRM.Models.AssignedLeads", b =>
                 {
                     b.HasOne("ConcultancyCRM.Models.Employee", "Employee")
@@ -727,15 +698,8 @@ namespace ConcultancyCRM.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ConcultancyCRM.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("AppUserEmployeeInfo");
-                });
-
             modelBuilder.Entity("ConcultancyCRM.Models.Employee", b =>
                 {
-                    b.Navigation("AppUserEmployeeInfo");
-
                     b.Navigation("AssignedLeads");
                 });
 

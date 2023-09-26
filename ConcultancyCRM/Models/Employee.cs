@@ -3,6 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ConcultancyCRM.Models
 {
+    public class VMEmployeeCreate : Employee
+    {
+        public string Password { get; set; }
+    }
     public class Employee
     {
         public int Id { get; set; }
@@ -21,5 +25,6 @@ namespace ConcultancyCRM.Models
         public bool IsAdmin { get; set; }
         public bool IsSalesRepresentative { get; set; }
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
+        public virtual AppUserEmployeeInfo AppUserEmployeeInfo { get; set; }
     }
 }
