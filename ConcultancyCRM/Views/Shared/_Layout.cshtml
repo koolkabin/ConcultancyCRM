@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var _ActiveSession = SessionHelper.GetSession(Context);
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -47,10 +50,18 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="MyLeadInfoes" asp-action="Index">My Leads</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
-
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            @if (_ActiveSession != null)
+                            {
+                                <span>Welcome @_ActiveSession.UserName</span>
+                            }
+                            else
+                            {
+                                <span>Not Logged</span>
+                            }
                         </li>
                     </ul>
                 </div>
@@ -80,7 +91,7 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $('.dataTable').DataTable();
         })
     </script>

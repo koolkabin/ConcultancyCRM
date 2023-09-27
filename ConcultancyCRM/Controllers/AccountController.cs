@@ -93,12 +93,13 @@ namespace ConcultancyCRM.Controllers
                         result.EmpName = relEmp.Name;
                     }
                 }
-                HttpContext.SetMessage(true, "Login Successful.");
+                SessionHelper.SetSession(HttpContext, result);
+                TempDataHelper.SetMsg(TempData, true, "Login Successful.");
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
             {
-                HttpContext.SetMessage(false, ex.Message);
+                TempDataHelper.SetMsg(TempData, false, ex.Message);
                 return View();
             }
         }
@@ -121,7 +122,7 @@ namespace ConcultancyCRM.Controllers
 
             return token;
         }
-       
+
         public async Task<IActionResult> InstallApplciation()
         {
             try
@@ -169,6 +170,6 @@ namespace ConcultancyCRM.Controllers
                 return Content("Installation Failed with error: " + ex.Message);
             }
         }
-       
+
     }
 }

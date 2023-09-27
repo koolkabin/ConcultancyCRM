@@ -1,6 +1,7 @@
 ﻿@model ConcultancyCRM.Models.VMEmployeeCreate
 
 @{
+    var _ActiveSession = SessionHelper.GetSession(Context);
     ViewData["Title"] = "Create";
 }
 <h1 class="text-left">
