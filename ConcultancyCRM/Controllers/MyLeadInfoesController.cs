@@ -19,6 +19,8 @@ namespace ConcultancyCRM.Controllers
             return View(await _context.LeadInfo
                 .Where(x => x.AssignedLeads != null &&
                     x.AssignedLeads
+                    .LastOrDefault() != null &&
+                    x.AssignedLeads
                     .LastOrDefault()
                     .EmployeeId == _ActiveSession.EmployeeId)
                 .ToListAsync());

@@ -19,7 +19,7 @@ namespace ConcultancyCRM.Models
         public string Mobile { get; set; }
         [MaxLength(255)]
         public string Email { get; set; }
-        [UIHint("YesNo")]
+        [UIHint("ActiveInActive")]
         public bool Status { get; set; }
         [UIHint("YesNo")]
         public bool Deleted { get; set; }

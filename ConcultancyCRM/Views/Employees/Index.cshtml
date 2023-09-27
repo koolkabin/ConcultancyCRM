@@ -3,16 +3,19 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1 class="text-center">Employee List</h1>
-<div class="d-flex justify-content-start mb-4">
-    <a asp-action="Create" class="btn btn-success">
+<h1 class="text-left">
+    Employee List
+    <div class="float-end">
+        <a asp-action="Create" class="btn btn-success">
             <ion-icon name="add-outline"></ion-icon>
             Create
-    </a>
-</div>
+        </a>
+    </div>
+</h1>
+<hr />
 
-<table class="table" id="myTable">
+
+<table class="table table-stripped table-bordered dataTable" id="myTable">
     <thead>
         <tr>
             <th>
@@ -31,19 +34,13 @@
                 @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Deleted)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.JoinDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.UserId)
+                Admin
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IsAdmin)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsSalesRepresentative)
+                Sales Rep
             </th>
             <th>Action</th>
         </tr>
@@ -68,13 +65,7 @@
                     @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Deleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.JoinDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.UserId)
+                    @ViewHelper.GetDate(item.JoinDate)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.IsAdmin)
@@ -84,14 +75,14 @@
                 </td>
                 <td>
                     <div class="d-flex" style="gap:5px;">
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-warning">
                             <ion-icon name="create-outline"></ion-icon>
                         </a>
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
-                                <ion-icon name="eye-outline"></ion-icon>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-xs btn-info">
+                            <ion-icon name="eye-outline"></ion-icon>
                         </a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
-                                <ion-icon name="trash-outline"></ion-icon>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-xs btn-danger">
+                            <ion-icon name="trash-outline"></ion-icon>
                         </a>
                     </div>
 
@@ -100,8 +91,3 @@
         }
     </tbody>
 </table>
-@section Scripts{
-    <script>
-        $('#myTable').DataTable();
-    </script>
-}

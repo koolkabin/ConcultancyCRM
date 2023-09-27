@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ConcultancyCRM.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using ConcultancyCRM.StaticHelpers;
 
 namespace ConcultancyCRM.Controllers
 {
@@ -93,13 +94,25 @@ namespace ConcultancyCRM.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(VMEmployeeCreate employee)
         {
-            if (ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    throw new Exception("Validation Errors: " +
+                        string.Join(',', ModelState.Values
+                            .SelectMany(x => x.Errors
+                                .Select(y => y.ErrorMessage))
+                            .ToArray()));
+                }
                 var uData = await CreateRelatedIdentityUser(employee);
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
                 await MapRelatedUserEmpInfo(employee, uData);
                 return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                TempDataHelper.SetMsg(TempData, false, ex.Message);
             }
             return View(employee);
         }
