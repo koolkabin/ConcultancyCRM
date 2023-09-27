@@ -3,16 +3,17 @@
 @{
     ViewData["Title"] = "Index";
 }
-<h1 class="text-center">Lead Comments</h1>
-<div class="d-flex justify-content-start mb-4">
-    <a asp-action="Create">
-        <button class="btn btn-success">
+<h1 class="text-left">
+    Lead Comments
+    <div class="float-end">
+        <a asp-action="Create" class="btn btn-success">
             <ion-icon name="add-outline"></ion-icon>
             Create
-        </button>
-    </a>
-</div>
-<table class="table" id="myTable">
+        </a>
+    </div>
+</h1>
+<hr />
+<table class="table table-stripped table-bordered dataTable" id="myTable">
     <thead>
         <tr>
             <th>

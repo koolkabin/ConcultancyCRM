@@ -1,0 +1,108 @@
+﻿@model LeaveRequest
+<div class="form-group">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="EmployeeId" class="control-label"></label>
+        </div>
+        <div class="col-7">
+            <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+        </div>
+    </div>
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="RequestDate" class="control-label"></label>
+
+        </div>
+        <div class="col-7">
+            <input asp-for="RequestDate" class="form-control" />
+            <span asp-validation-for="RequestDate" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="LeaveRemarks" class="control-label"></label>
+
+        </div>
+        <div class="col-7">
+            <input asp-for="LeaveRemarks" class="form-control" />
+            <span asp-validation-for="LeaveRemarks" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group form-check mt-3">
+    <div class="row">
+        <div class="col-5">
+        </div>
+        <div class="col-7">
+            <label class="form-check-label">
+                <input class="form-check-input" asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+            </label>
+        </div>
+    </div>
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="ApprovedByUserName" class="control-label"></label>
+
+        </div>
+        <div class="col-7">
+            <input asp-for="ApprovedByUserName" class="form-control" />
+            <span asp-validation-for="ApprovedByUserName" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="ApprovedDate" class="control-label"></label>
+
+
+        </div>
+        <div class="col-7">
+            <input asp-for="ApprovedDate" class="form-control" />
+            <span asp-validation-for="ApprovedDate" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="FromDate" class="control-label"></label>
+        </div>
+        <div class="col-7">
+
+            <input asp-for="FromDate" class="form-control" />
+            <span asp-validation-for="FromDate" class="text-danger"></span>
+        </div>
+    </div>
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="ToDate" class="control-label"></label>
+        </div>
+        <div class="col-7">
+            <input asp-for="ToDate" class="form-control" />
+            <span asp-validation-for="ToDate" class="text-danger"></span>
+        </div>
+    </div>
+
+</div>
+<div class="form-group row mt-3">
+    <label class="col-5"></label>
+    <div class="col-7">
+        <button type="submit" class="btn btn-primary">
+            <ion-icon name="add-outline"></ion-icon>
+            Save
+        </button>
+        <button type="reset" class="btn btn-secondary">
+            <ion-icon name="refresh-outline"></ion-icon>
+            Reset
+        </button>
+    </div>
+</div>
