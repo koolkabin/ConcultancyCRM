@@ -97,7 +97,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.Delivery)
             </th>
-            <th></th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -185,9 +185,17 @@
                 @Html.DisplayFor(modelItem => item.Delivery)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div class="d-flex" style="gap:5px;">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                            <ion-icon name="create-outline"></ion-icon>
+                        </a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </a>
+                    </div>
             </td>
         </tr>
 }
