@@ -1,0 +1,14 @@
+﻿@model Tuple<string, string>
+<h1 class="text-left mb-5">
+    @Model.Item1
+    @if (!string.IsNullOrEmpty(Model.Item2))
+    {
+        <div class="float-end">
+            <a asp-action="@Model.Item2" class="btn btn-success">
+                <ion-icon name="add-outline"></ion-icon>
+                Create
+            </a>
+        </div>
+    }
+</h1>
+<hr />
