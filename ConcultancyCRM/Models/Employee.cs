@@ -9,6 +9,7 @@ namespace ConcultancyCRM.Models
     }
     public class Employee
     {
+        [Key]
         public int Id { get; set; }
         [MaxLength(255)]
         public string Name { get; set; }
@@ -20,6 +21,7 @@ namespace ConcultancyCRM.Models
         public string Email { get; set; }
         [UIHint("ActiveInActive")]
         public bool Status { get; set; }
+        [UIHint("YesNo")]
         public bool Deleted { get; set; }
         public DateTime JoinDate { get; set; }
         public string UserId { get; set; }

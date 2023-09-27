@@ -8,7 +8,7 @@
     Create Employee
     <div class="float-end">
         <a asp-action="Index" class="btn btn-success">
-            <ion-icon name="add-outline"></ion-icon>
+            <ion-icon name="arrow-back-outline"></ion-icon>
             Back To List
         </a>
     </div>
@@ -19,13 +19,8 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @Html.EditorForModel()
-            
-
         </form>
     </div>
-</div>
-
-<div>
 </div>
 
 @section Scripts {

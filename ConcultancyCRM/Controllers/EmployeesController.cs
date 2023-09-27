@@ -105,10 +105,8 @@ namespace ConcultancyCRM.Controllers
                             .ToArray()));
                 }
                 var uData = await CreateRelatedIdentityUser(employee);
-
                 _context.Add(employee);
                 await _context.SaveChangesAsync();
-
                 await MapRelatedUserEmpInfo(employee, uData);
                 return RedirectToAction(nameof(Index));
             }
@@ -137,11 +135,24 @@ namespace ConcultancyCRM.Controllers
             }
 
             var employee = await _context.Employees.FindAsync(id);
+            var VMemp = new VMEmployeeCreate();
+            VMemp.Name = employee.Name;
+            VMemp.Id = employee.Id; 
+            VMemp.Address = employee.Address;
+            VMemp.Mobile = employee.Mobile;
+            VMemp.Email = employee.Email;   
+            VMemp.Status = employee.Status;
+            VMemp.Deleted = employee.Deleted;
+            VMemp.JoinDate = employee.JoinDate; 
+            VMemp.UserId = employee.UserId;
+            VMemp.IsAdmin   = employee.IsAdmin;
+            VMemp.IsSalesRepresentative = employee.IsSalesRepresentative;
+            VMemp.Password = null;
             if (employee == null)
             {
                 return NotFound();
             }
-            return View(employee);
+            return View(VMemp);
         }
 
         // POST: Employees/Edit/5
@@ -149,7 +160,7 @@ namespace ConcultancyCRM.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Employee employee)
+        public async Task<IActionResult> Edit(int id, VMEmployeeCreate employee)
         {
             if (id != employee.Id)
             {

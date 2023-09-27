@@ -186,7 +186,7 @@
         </section>
         <section id="NewLeadAssignments">
             @{
-                await Html.PartialAsync("Partial/_NewLeadAssignForm", Model);
+                await Html.RenderPartialAsync("Partial/_NewLeadAssignForm", Model);
             }
         </section>
         <section id="leadComments">
@@ -212,7 +212,7 @@
         </section>
         <section id="newLeadComment">
             @{
-                await Html.PartialAsync("Partial/_NewLeadCommentForm", Model);
+                await Html.RenderPartialAsync("Partial/_NewLeadCommentForm", Model);
             }
         </section>
     </div>
