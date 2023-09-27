@@ -168,12 +168,16 @@
     </div>
     <div class="col-sm-4">
         <section id="leadAssignments">
+            <h3 class="fs-6">Previous lead employee</h3>
             <table class="table table-stripped">
-                <tr>
-                    <th>SN</th>
-                    <th>Date</th>
-                    <th>Employee</th>
-                </tr>
+                <thead>
+                    <tr class="table-dark">
+                        <th>SN</th>
+                        <th>Date</th>
+                        <th>Employee</th>
+                    </tr>
+                </thead>
+              
                 @foreach (var item in Model.AssignedLeads)
                 {
                     <tr>
@@ -191,13 +195,16 @@
         </section>
         <section id="leadComments">
             <table class="table table-stripped">
-                <tr>
-                    <th>SN</th>
-                    <th>Date</th>
-                    <th>Employee</th>
-                    <th>Status</th>
-                    <th>Comments</th>
-                </tr>
+                <thead class="table-dark">
+                    <tr>
+                        <th>SN</th>
+                        <th>Date</th>
+                        <th>Employee</th>
+                        <th>Status</th>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+             
                 @foreach (var item in Model.LeadComments)
                 {
                     <tr>

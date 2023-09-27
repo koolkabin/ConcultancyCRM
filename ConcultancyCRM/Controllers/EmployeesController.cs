@@ -55,7 +55,13 @@ namespace ConcultancyCRM.Controllers
         // GET: Employees/Create
         public IActionResult Create()
         {
-            return View();
+            var data = new VMEmployeeCreate()
+            {
+                Status = true,
+                IsAdmin = false,
+                IsSalesRepresentative = true
+            };
+            return View(data);
         }
 
         private async Task<ApplicationUser> CreateRelatedIdentityUser(VMEmployeeCreate Data)
@@ -137,15 +143,15 @@ namespace ConcultancyCRM.Controllers
             var employee = await _context.Employees.FindAsync(id);
             var VMemp = new VMEmployeeCreate();
             VMemp.Name = employee.Name;
-            VMemp.Id = employee.Id; 
+            VMemp.Id = employee.Id;
             VMemp.Address = employee.Address;
             VMemp.Mobile = employee.Mobile;
-            VMemp.Email = employee.Email;   
+            VMemp.Email = employee.Email;
             VMemp.Status = employee.Status;
             VMemp.Deleted = employee.Deleted;
-            VMemp.JoinDate = employee.JoinDate; 
+            VMemp.JoinDate = employee.JoinDate;
             VMemp.UserId = employee.UserId;
-            VMemp.IsAdmin   = employee.IsAdmin;
+            VMemp.IsAdmin = employee.IsAdmin;
             VMemp.IsSalesRepresentative = employee.IsSalesRepresentative;
             VMemp.Password = null;
             if (employee == null)
