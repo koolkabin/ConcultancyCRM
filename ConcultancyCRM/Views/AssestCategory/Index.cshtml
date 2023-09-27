@@ -1,0 +1,75 @@
+﻿@* @model IEnumerable<ConcultancyCRM.Models.AssestCategory> *@
+
+@{
+    ViewData["Title"] = "Index";
+    int sn = 1;
+}
+<h1 class="text-left">
+    Assest Category
+    <div class="float-end">
+        <a asp-action="Create" class="btn btn-success">
+            <ion-icon name="add-outline"></ion-icon>
+            Create
+        </a>
+    </div>
+</h1>
+<hr />
+
+@Html.Raw(TempDataHelper.ShowMsg(TempData))
+<table class="table table-stripped table-bordered dataTable" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                SN
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                IsDeleted
+            </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+            <tr>
+                <td>
+                    @(sn++)
+                </td>
+                <td>
+                    title Name
+                </td>
+                <td>
+                    description
+                </td>
+                <td>
+                    Active
+                </td>
+                <td>
+                    Not
+                </td>
+                <td>
+                    <div class="d-flex" style="gap:5px;">
+                        <a asp-action="Edit" asp-route-id="#" class="btn btn-xs btn-warning">
+                            <ion-icon name="create-outline"></ion-icon>
+                        </a>
+                        <a asp-action="Details" asp-route-id="#" class="btn btn-xs btn-info">
+                            <ion-icon name="eye-outline"></ion-icon>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="#" class="btn btn-xs btn-danger">
+                            <ion-icon name="trash-outline"></ion-icon>
+                        </a>
+                    </div>
+
+                </td>
+            </tr>
+        
+    </tbody>
+</table>
