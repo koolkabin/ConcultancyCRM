@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int sn = 1;
 }
 
 <h1 class="text-left">
@@ -17,6 +18,7 @@
 <table class="table table-stripped table-bordered dataTable" id="myTable">
     <thead>
         <tr>
+            <th>SN</th>
             <th>
                 @Html.DisplayNameFor(model => model.RequestDate)
             </th>
@@ -45,33 +47,38 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RequestDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LeaveRemarks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsApproved)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApprovedByUserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApprovedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FromDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ToDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.Id)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @(sn++)
+                </td>
+                <td>
+                    @ViewHelper.GetDate(item.RequestDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LeaveRemarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsApproved)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApprovedByUserName)
+                </td>
+                <td>
+                    @(item.ApprovedDate.ToString() != "" ? ViewHelper.GetDate(item.FromDate) : "")
+                </td>
+
+                <td>
+                    @ViewHelper.GetDate(item.FromDate)
+                </td>
+                <td>
+                    @ViewHelper.GetDate(item.ToDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Name)
+                </td>
+                <td>
                     <div class="d-flex" style="gap:5px;">
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
                             <ion-icon name="create-outline"></ion-icon>
@@ -83,9 +90,9 @@
                             <ion-icon name="trash-outline"></ion-icon>
                         </a>
                     </div>
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 @section Scripts{

@@ -3,15 +3,22 @@
 @{
     ViewData["Title"] = "Details";
 }
-
-<h1>Details</h1>
+<h1 class="text-left">
+    LeadInfo Details
+    <div class="float-end">
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model?.Id">
+            <ion-icon name="create-outline"></ion-icon>
+            Edit
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Back To List
+        </a>
+    </div>
+</h1>
+<hr />
 
 <div>
-    <h4>LeadInfo</h4>
-    <hr />
     @Html.DisplayForModel()
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+

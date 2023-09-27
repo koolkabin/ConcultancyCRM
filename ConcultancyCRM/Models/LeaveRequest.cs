@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConcultancyCRM.Models
 {
@@ -9,6 +10,7 @@ namespace ConcultancyCRM.Models
         public int EmployeeId { get; set; }
         public DateTime RequestDate { get; set; }
         public string LeaveRemarks { get; set; }
+        [UIHint("YesNo")]
         public bool IsApproved { get; set; }
         public string ApprovedByUserName { get; set; }
         public DateTime? ApprovedDate { get; set; }

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int sn = 1;
 }
 
 <h1 class="text-left">
@@ -17,6 +18,9 @@
 <table class="table table-stripped table-bordered dataTable" id="myTable">
     <thead>
         <tr>
+            <th>
+                SN
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.TxnDate)
             </th>
@@ -105,7 +109,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TxnDate)
+                @(sn++)
+            </td>
+            <td>
+                    @ViewHelper.GetDate(item.TxnDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LeadSource)
@@ -147,7 +154,7 @@
                 @Html.DisplayFor(modelItem => item.ExamName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ExamDate)
+                    @ViewHelper.GetDate(item.ExamDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ExamMonth)

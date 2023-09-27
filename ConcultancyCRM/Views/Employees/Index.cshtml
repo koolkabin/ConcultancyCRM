@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int sn = 1;
 }
 <h1 class="text-left">
     Employee List
@@ -18,6 +19,9 @@
 <table class="table table-stripped table-bordered dataTable" id="myTable">
     <thead>
         <tr>
+            <th>
+                SN
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -49,6 +53,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @(sn++)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>

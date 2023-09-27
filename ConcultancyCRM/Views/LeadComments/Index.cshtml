@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Index";
+    int sn = 1;
 }
 <h1 class="text-left">
     Lead Comments
@@ -16,6 +17,9 @@
 <table class="table table-stripped table-bordered dataTable" id="myTable">
     <thead>
         <tr>
+            <th>
+                SN
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
@@ -40,11 +44,12 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>@(sn++)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TxnDate)
+                    @ViewHelper.GetDate(item.TxnDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
