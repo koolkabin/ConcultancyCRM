@@ -1,5 +1,7 @@
 ﻿@model LeadInfo
-
+@{
+    var _ActiveSession = SessionHelper.GetSession(Context);
+}
 <div class="row">
     <div class="col-sm-8">
         <dt class="col-sm-2">
@@ -168,7 +170,7 @@
     </div>
     <div class="col-sm-4">
         <section id="leadAssignments">
-            <h3 class="fs-6">Previous lead employee</h3>
+            <h3 class="fs-6">Previous Lead Employee</h3>
             <table class="table table-stripped">
                 <thead>
                     <tr class="table-dark">
@@ -177,7 +179,7 @@
                         <th>Employee</th>
                     </tr>
                 </thead>
-              
+
                 @foreach (var item in Model.AssignedLeads)
                 {
                     <tr>
@@ -188,12 +190,17 @@
                 }
             </table>
         </section>
-        <section id="NewLeadAssignments">
-            @{
-                await Html.RenderPartialAsync("Partial/_NewLeadAssignForm", Model);
-            }
-        </section>
+        @if (Model.CanAssignLead(_ActiveSession))
+        {
+
+            <section id="NewLeadAssignments">
+                @{
+                    await Html.RenderPartialAsync("Partial/_NewLeadAssignForm", Model);
+                }
+            </section>
+        }
         <section id="leadComments">
+            <h3>Previous Comments</h3>
             <table class="table table-stripped">
                 <thead class="table-dark">
                     <tr>
@@ -204,7 +211,7 @@
                         <th>Comments</th>
                     </tr>
                 </thead>
-             
+
                 @foreach (var item in Model.LeadComments)
                 {
                     <tr>
@@ -217,10 +224,15 @@
                 }
             </table>
         </section>
-        <section id="newLeadComment">
-            @{
-                await Html.RenderPartialAsync("Partial/_NewLeadCommentForm", Model);
-            }
-        </section>
+        @if (Model.CanComment(_ActiveSession.EmployeeId))
+        {
+
+            <section id="newLeadComment">
+                @{
+                    await Html.RenderPartialAsync("Partial/_NewLeadCommentForm", Model);
+                }
+            </section>
+        }
+
     </div>
 </div>

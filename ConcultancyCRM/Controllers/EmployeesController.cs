@@ -59,7 +59,8 @@ namespace ConcultancyCRM.Controllers
             {
                 Status = true,
                 IsAdmin = false,
-                IsSalesRepresentative = true
+                IsSalesRepresentative = true,
+                JoinDate = DateTime.Now
             };
             return View(data);
         }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ConcultancyCRM.Models;
+using ConcultancyCRM.StaticHelpers;
 
 namespace ConcultancyCRM.Controllers
 {
@@ -169,6 +170,17 @@ namespace ConcultancyCRM.Controllers
             {
                 throw new Exception("Invalid Old Lead.");
             }
+            if (_ActiveSession.IsSalesRepresentative &&
+                oldLead.AssignedLeads.Any() &&
+                _ActiveSession.EmployeeId != oldLead
+                    .AssignedLeads
+                    .OrderBy(x => x.Id)
+                    .Last()
+                    .EmployeeId
+                )
+            {
+                throw new Exception("Sales Representative can comment on leads they are assigned to.");
+            }
             Data.EmployeeID = _ActiveSession.EmployeeId;
             Data.EmpName = _ActiveSession.EmpName;
             Data.TxnDate = DateTime.Now;
@@ -180,18 +192,32 @@ namespace ConcultancyCRM.Controllers
         }
         public async Task<IActionResult> AssignLead(AssignedLeads Data)
         {
-            var oldLead = _context.LeadInfo.Find(Data.LeadInfoId);
-            if (oldLead == null)
+            try
             {
-                throw new Exception("Invalid Old Lead.");
-            }
-            //Data. = 0;
-            Data.AssignedByName = _ActiveSession.UserName;
-            Data.AssignedDate = DateTime.Now;
+                var oldLead = _context.LeadInfo.Find(Data.LeadInfoId);
+                if (oldLead == null)
+                {
+                    throw new Exception("Invalid Old Lead.");
+                }
+                if (!_ActiveSession.IsGeneralAdmin)
+                {
+                    throw new Exception("Permission Error. Logged in User should be General Admin");
+                }
+                //Data. = 0;
+                Data.AssignedByName = _ActiveSession.UserName;
+                Data.AssignedDate = DateTime.Now;
 
-            oldLead.AssignedLeads.Add(Data);
-            _context.Entry(oldLead).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+                oldLead.AssignedLeads.Add(Data);
+                _context.Entry(oldLead).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+                TempDataHelper.SetMsg(TempData, true, "Lead Assigned Successfully");
+
+            }
+            catch (Exception ex)
+            {
+
+                TempDataHelper.SetMsg(TempData, false, ex.Message);
+            }
             return RedirectToAction("Details", new { id = Data.LeadInfo });
         }
     }

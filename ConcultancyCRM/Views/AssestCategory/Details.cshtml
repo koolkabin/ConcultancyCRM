@@ -1,5 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ConcultancyCRM.Models.AssestCategory
+
 @{
+    var _ActiveSession = SessionHelper.GetSession(Context);
+    ViewData["Title"] = "Create";
 }
+<h1 class="text-left">
+    Assets Category Detail [@Model.Title]
+    <div class="float-end">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">
+            <ion-icon name="create-outline"></ion-icon>
+            Edit
+        </a>
+        <a asp-action="Index" class="btn btn-success">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Back To List
+        </a>
+    </div>
+</h1>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        @Html.Raw(TempDataHelper.ShowMsg(TempData))
+        @Html.DisplayForModel()
+    </div>
+</div>

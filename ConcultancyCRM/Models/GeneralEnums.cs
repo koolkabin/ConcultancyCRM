@@ -1,4 +1,6 @@
-﻿namespace ConcultancyCRM.Models
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+
+namespace ConcultancyCRM.Models
 {
     public enum enumUserType
     {

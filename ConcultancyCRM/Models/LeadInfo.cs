@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ConcultancyCRM.StaticHelpers;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConcultancyCRM.Models
@@ -65,6 +66,13 @@ namespace ConcultancyCRM.Models
         public AssignedLeads LastRecord => AssignedLeads.Any() ? AssignedLeads.Last() : new AssignedLeads();
         //[NotMapped]
         public bool CanComment(int EmpId) => LastRecord.EmployeeId == EmpId;
+        [NotMapped]
+        public bool IsLeadComplete => LeadStatusHelper.IsLeadCompleted(LeadStatus);
+        [NotMapped]
+        public bool IsLeadActive => LeadStatusHelper.IsActive(LeadStatus);
+        //[NotMapped]
+        public bool CanAssignLead(SessionInfo _ActiveSession) => _ActiveSession.IsGeneralAdmin &&
+            IsLeadActive;
 
         public LeadInfo()
         {

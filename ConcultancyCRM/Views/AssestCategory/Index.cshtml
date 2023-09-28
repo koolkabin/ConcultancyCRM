@@ -1,4 +1,4 @@
-﻿@* @model IEnumerable<ConcultancyCRM.Models.AssestCategory> *@
+﻿@model IEnumerable<ConcultancyCRM.Models.AssestCategory>
 
 @{
     ViewData["Title"] = "Index";
@@ -31,20 +31,19 @@
             <th>
                 Status
             </th>
-            <th>
-                IsDeleted
-            </th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        
+        @foreach (var item in Model)
+        {
+
             <tr>
                 <td>
                     @(sn++)
                 </td>
                 <td>
-                    title Name
+                    @item.
                 </td>
                 <td>
                     description
@@ -53,23 +52,21 @@
                     Active
                 </td>
                 <td>
-                    Not
-                </td>
-                <td>
                     <div class="d-flex" style="gap:5px;">
-                        <a asp-action="Edit" asp-route-id="#" class="btn btn-xs btn-warning">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-warning">
                             <ion-icon name="create-outline"></ion-icon>
                         </a>
-                        <a asp-action="Details" asp-route-id="#" class="btn btn-xs btn-info">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-xs btn-info">
                             <ion-icon name="eye-outline"></ion-icon>
                         </a>
-                        <a asp-action="Delete" asp-route-id="#" class="btn btn-xs btn-danger">
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-xs btn-danger">
                             <ion-icon name="trash-outline"></ion-icon>
                         </a>
                     </div>
 
                 </td>
             </tr>
-        
+        }
+
     </tbody>
 </table>

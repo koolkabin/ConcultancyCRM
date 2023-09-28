@@ -7,9 +7,10 @@
 <h1 class="text-left">
     Employee Details
     <div class="float-end">
-        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@Model?.Id">
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@(Model?.Id)">
             <ion-icon name="create-outline"></ion-icon>
-            Edit</a>
+            Edit
+        </a>
         <a asp-action="Index" class="btn btn-secondary">
             <ion-icon name="arrow-back-outline"></ion-icon>
             Back To List

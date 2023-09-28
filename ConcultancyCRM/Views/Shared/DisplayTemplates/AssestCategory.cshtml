@@ -1,0 +1,27 @@
+﻿@model AssestCategory
+<div class="form-group">
+    <div class="row">
+        <label class="control-label col-sm-2">Title</label>
+        <div class="col-10">
+            @Model.Title
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="row">
+        <label class="control-label col-sm-2">Description</label>
+        <div class="col-10">
+            @Model.Description
+        </div>
+    </div>
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-sm-2">
+            <label class="control-label">Status</label>
+        </div>
+        <div class="col-10">
+            @Html.DisplayFor(x=>x.Status)
+        </div>
+    </div>
+</div>
