@@ -170,6 +170,9 @@ namespace ConcultancyCRM.Controllers
                 return Content("Installation Failed with error: " + ex.Message);
             }
         }
-
+        public async Task<IActionResult> AccessDenied()
+        {
+            return View();
+        }
     }
 }

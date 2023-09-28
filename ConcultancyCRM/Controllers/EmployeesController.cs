@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+﻿using ConcultancyCRM.CustomAttibutes;
 using ConcultancyCRM.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using ConcultancyCRM.StaticHelpers;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConcultancyCRM.Controllers
 {
-    [Authorize]
+
+    [GeneralAdminAuth]
     public class EmployeesController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;

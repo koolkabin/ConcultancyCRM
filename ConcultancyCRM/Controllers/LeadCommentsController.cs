@@ -1,4 +1,5 @@
-﻿using ConcultancyCRM.Models;
+﻿using ConcultancyCRM.CustomAttibutes;
+using ConcultancyCRM.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConcultancyCRM.Controllers
 {
-    [Authorize]
+    [GeneralAdminAuth]
     public class LeadCommentsController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;

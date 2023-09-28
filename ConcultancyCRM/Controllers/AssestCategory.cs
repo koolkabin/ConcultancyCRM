@@ -1,10 +1,12 @@
-﻿using ConcultancyCRM.Models;
+﻿using ConcultancyCRM.CustomAttibutes;
+using ConcultancyCRM.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConcultancyCRM.Controllers
 {
+    [GeneralAdminAuth]
     public class AssestCategoryController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;

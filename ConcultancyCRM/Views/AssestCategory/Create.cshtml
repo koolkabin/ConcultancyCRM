@@ -2,30 +2,16 @@
 
 @{
     var _ActiveSession = SessionHelper.GetSession(Context);
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Access Denied";
 }
 <h1 class="text-left">
-    Create Assets Category
+    Access Denied
     <div class="float-end">
-        <a asp-action="Index" class="btn btn-success">
+        <a asp-action="Index" asp-controller="Home" class="btn btn-success">
             <ion-icon name="arrow-back-outline"></ion-icon>
-            Back To List
+            Back
         </a>
     </div>
 </h1>
 <hr />
-<div class="row">
-    <div class="col-md-5">
-        <form asp-action="">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @Html.Raw(TempDataHelper.ShowMsg(TempData))
-            @Html.EditorForModel()
-        </form>
-    </div>
-</div>
-
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+<h3>Block URL: @Html.Raw(Context.Request.Query)</h3>
