@@ -73,6 +73,10 @@ namespace ConcultancyCRM.Models
         //[NotMapped]
         public bool CanAssignLead(SessionInfo _ActiveSession) => _ActiveSession.IsGeneralAdmin &&
             IsLeadActive;
+        public bool CanEdit(SessionInfo _ActiveSession) => _ActiveSession.IsGeneralAdmin &&
+           IsLeadActive;
+        public bool CanDelete(SessionInfo _ActiveSession) => _ActiveSession.IsGeneralAdmin &&
+          IsLeadActive;
 
         public LeadInfo()
         {

@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ConcultancyCRM.Models.LeadInfo>
-
 @{
+    var _ActiveSession = SessionHelper.GetSession(Context);
     ViewData["Title"] = "Index";
     int sn = 1;
 }
@@ -24,6 +24,7 @@
     <table class="table table-stripped table-bordered dataTable" id="myTable">
         <thead>
             <tr>
+                <th>Action</th>
                 <th>SN</th>
                 <th>Status</th>
                 <th>@Html.DisplayNameFor(model => model.TxnDate)</th>
@@ -44,13 +45,31 @@
                 <th>@Html.DisplayNameFor(model => model.CenterAddress)</th>
                 <th>@Html.DisplayNameFor(model => model.PaidFeeAmount)</th>
                 <th>@Html.DisplayNameFor(model => model.VoucherNumber)</th>
-                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
                 <tr>
+                    <td>
+                        <div class="d-flex" style="gap:5px;">
+                            @if (item.CanEdit(_ActiveSession))
+                            {
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                                    <ion-icon name="create-outline"></ion-icon>
+                                </a>
+                            }
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
+                                <ion-icon name="eye-outline"></ion-icon>
+                            </a>
+                            @if (item.CanDelete(_ActiveSession))
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                    <ion-icon name="trash-outline"></ion-icon>
+                                </a>
+                            }
+                        </div>
+                    </td>
                     <td>@(sn++)</td>
                     <td>@Html.DisplayFor(x=>item.LeadStatus)</td>
                     <td>@ViewHelper.GetDate(item.TxnDate)</td>
@@ -71,27 +90,9 @@
                     <td>@Html.DisplayFor(modelItem => item.CenterAddress)</td>
                     <td>@Html.DisplayFor(modelItem => item.PaidFeeAmount)</td>
                     <td>@Html.DisplayFor(modelItem => item.VoucherNumber)</td>
-                    <td>
-                        <div class="d-flex" style="gap:5px;">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
-                                <ion-icon name="create-outline"></ion-icon>
-                            </a>
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
-                                <ion-icon name="eye-outline"></ion-icon>
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </a>
-                        </div>
-                    </td>
+
                 </tr>
             }
         </tbody>
     </table>
 </div>
-
-@section Scripts{
-    <script>
-        $('#myTable').DataTable();
-    </script>
-}
