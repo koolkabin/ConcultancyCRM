@@ -3,7 +3,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-<h1 class="text-left">
+<h3 class="text-left">
     LeadInfo Details
     <div class="float-end">
         @if (Model.CanEdit(SessionHelper.GetSession(Context)))
@@ -15,7 +15,7 @@
         }
         @if (Model.CanDelete(SessionHelper.GetSession(Context)))
         {
-            <a asp-action="Edit" class="btn btn-danger" asp-route-id="@(Model?.Id)">
+            <a asp-action="Delete" class="btn btn-danger" asp-route-id="@(Model?.Id)">
                 <ion-icon name="trash-outline"></ion-icon>
                 Delete
             </a>
@@ -25,10 +25,7 @@
             Back To List
         </a>
     </div>
-</h1>
+</h3>
 <hr />
-
-<div>
-    @Html.DisplayForModel()
-</div>
+@Html.DisplayForModel()
 

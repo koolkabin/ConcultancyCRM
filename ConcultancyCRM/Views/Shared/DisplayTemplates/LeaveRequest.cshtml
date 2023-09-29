@@ -1,0 +1,41 @@
+﻿@model LeaveRequest
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th class="text-right">Employee Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Employee.Name)</td>
+                </tr>
+                <tr>
+                    <th class="text-right" style="width: 30%;">Request Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.RequestDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Is Approved:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.IsApproved)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Approved By:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ApprovedByUserName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Approved Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ApprovedDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">From Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.FromDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">To Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ToDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Leave Remarks:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.LeaveRemarks)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

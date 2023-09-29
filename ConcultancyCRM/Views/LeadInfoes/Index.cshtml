@@ -4,12 +4,11 @@
     ViewData["Title"] = "Index";
     int sn = 1;
 }
-
-<h1 class="text-left">
+<h3 class="text-left">
     Lead Info
     <div class="float-end">
         <a asp-controller="LeadMigration" asp-action="Index" class="btn btn-success">
-            <ion-icon name="upload-outline"></ion-icon>
+            <ion-icon name="cloud-upload-outline"></ion-icon>
             Upload Bulk
         </a>
         <a asp-action="Create" class="btn btn-success">
@@ -17,8 +16,10 @@
             Create
         </a>
     </div>
-</h1>
+</h3>
 <hr />
+
+
 <div class="table-responsive">
 
     <table class="table table-stripped table-bordered dataTable" id="myTable">

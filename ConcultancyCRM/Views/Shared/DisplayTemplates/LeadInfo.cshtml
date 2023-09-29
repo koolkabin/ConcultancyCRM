@@ -2,171 +2,122 @@
 @{
     var _ActiveSession = SessionHelper.GetSession(Context);
 }
-<div class="row">
-    <div class="col-sm-8">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TxnDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TxnDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LeadSource)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LeadSource)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.AgentName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.AgentName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CandidateFirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CandidateFirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CandidateLastName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CandidateLastName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EmailID)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EmailID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Country)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.City)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Result)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Result)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.VendorName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.VendorName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.VendorID)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.VendorID)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExamCode)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExamCode)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExamName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExamName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExamDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExamDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExamMonth)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExamMonth)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExamYear)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExamYear)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.ExamType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ExamType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CenterName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CenterName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CenterAddress)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CenterAddress)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CenterCountry)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CenterCountry)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CenterPhoneNo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CenterPhoneNo)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CreditCard)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CreditCard)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Currency)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Currency)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.PaidFeeAmount)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.PaidFeeAmount)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.VoucherNumber)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.VoucherNumber)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Delivery)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Delivery)
-        </dd>
-
+<div class="row mt-4">
+    <div class="col-sm-7">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th class="text-right">Candidate First Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.CandidateFirstName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Candidate Last Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.CandidateLastName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Phone No:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.PhoneNo)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Email ID:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.EmailID)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Country:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Country)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">City:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.City)</td>
+                </tr>
+                <tr>
+                    <th class="text-right" style="width: 30%;">Request Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.TxnDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Lead Source:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.LeadSource)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Agent Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AgentName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Exam Code:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ExamCode)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Exam Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ExamName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Exam Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ExamDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Exam Month:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ExamMonth)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Exam Year:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ExamYear)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Exam Type:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ExamType)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Center Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.CenterName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Center Address:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.CenterAddress)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Center Country:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.CenterCountry)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Center Phone No:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.CenterPhoneNo)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Vendor ID:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.VendorID)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Vendor Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.VendorName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Result:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Result)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Credit Card:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.CreditCard)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Currency:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Currency)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Paid Fee Amount:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.PaidFeeAmount)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Voucher Number:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.VoucherNumber)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Delivery:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Delivery)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-1">
     </div>
     <div class="col-sm-4">
         <section id="leadAssignments">
@@ -193,14 +144,14 @@
         @if (Model.CanAssignLead(_ActiveSession))
         {
 
-            <section id="NewLeadAssignments">
+            <section id="NewLeadAssignments" class="mt-4">
                 @{
                     await Html.RenderPartialAsync("Partial/_NewLeadAssignForm", Model);
                 }
             </section>
         }
-        <section id="leadComments">
-            <h3>Previous Comments</h3>
+        <section id="leadComments" class="mt-4">
+            <h3 class="fs-6">Previous Lead Employee</h3>
             <table class="table table-stripped">
                 <thead class="table-dark">
                     <tr>
@@ -227,7 +178,7 @@
         @if (Model.CanComment(_ActiveSession.EmployeeId))
         {
 
-            <section id="newLeadComment">
+            <section id="newLeadComment" class="mt-4">
                 @{
                     await Html.RenderPartialAsync("Partial/_NewLeadCommentForm", Model);
                 }

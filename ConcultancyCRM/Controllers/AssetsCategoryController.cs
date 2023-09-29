@@ -7,16 +7,16 @@ using Microsoft.EntityFrameworkCore;
 namespace ConcultancyCRM.Controllers
 {
     [GeneralAdminAuth]
-    public class AssestCategoryController : _ABSAuthenticatedController
+    public class AssetsCategoryController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;
 
-        public AssestCategoryController(MyDBContext context)
+        public AssetsCategoryController(MyDBContext context)
         {
             _context = context;
         }
 
-        // GET: AssestCategories
+        // GET: AssetsCategories
         public async Task<IActionResult> Index()
         {
             var myDBContext = _context.AssestCategories;
@@ -44,7 +44,11 @@ namespace ConcultancyCRM.Controllers
         // GET: AssestCategories/Create
         public IActionResult Create()
         {
-            return View();
+            var data = new AssetsCategory()
+            {
+                Status = true,
+            };
+            return View(data);
         }
 
         // POST: AssestCategories/Create
@@ -52,7 +56,7 @@ namespace ConcultancyCRM.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AssestCategory assestCategory)
+        public async Task<IActionResult> Create(AssetsCategory assestCategory)
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +88,7 @@ namespace ConcultancyCRM.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, AssestCategory assestCategory)
+        public async Task<IActionResult> Edit(int id, AssetsCategory assestCategory)
         {
             if (id != assestCategory.Id)
             {

@@ -1,10 +1,10 @@
-﻿@model IEnumerable<ConcultancyCRM.Models.AssestCategory>
+﻿@model IEnumerable<ConcultancyCRM.Models.AssetsCategory>
 
 @{
     ViewData["Title"] = "Index";
     int sn = 1;
 }
-<h1 class="text-left">
+<h3 class="text-left">
     Assest Category
     <div class="float-end">
         <a asp-action="Create" class="btn btn-success">
@@ -12,7 +12,7 @@
             Create
         </a>
     </div>
-</h1>
+</h3>
 <hr />
 
 @Html.Raw(TempDataHelper.ShowMsg(TempData))
@@ -23,13 +23,13 @@
                 SN
             </th>
             <th>
-                Title
+                @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
-                Description
+                @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                Status
+                @Html.DisplayNameFor(model => model.Status)
             </th>
             <th>Action</th>
         </tr>
@@ -43,13 +43,13 @@
                     @(sn++)
                 </td>
                 <td>
-                    @item.
+                    @Html.DisplayFor(modelItem => item.Title)
                 </td>
                 <td>
-                    description
+                    @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    Active
+                    @Html.DisplayFor(modelItem => item.Status)
                 </td>
                 <td>
                     <div class="d-flex" style="gap:5px;">

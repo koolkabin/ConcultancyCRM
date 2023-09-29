@@ -2,14 +2,14 @@
 <div class="form-group">
     <div class="row">
         <div class="col-5">
-            <label asp-for="EmployeeId" class="control-label"></label>
+            <label asp-for="Employee.Name" class="control-label"></label>
         </div>
         <div class="col-7">
-            <select asp-for="EmployeeId" class="form-control" asp-items="ViewBag.EmployeeId"></select>
+            <select asp-for="Employee.Name" class="form-control" asp-items="ViewBag.EmployeeName"></select>
         </div>
     </div>
 </div>
-<div class="form-group mt-3">
+@* <div class="form-group mt-3">
     <div class="row">
         <div class="col-5">
             <label asp-for="RequestDate" class="control-label"></label>
@@ -20,31 +20,27 @@
             <span asp-validation-for="RequestDate" class="text-danger"></span>
         </div>
     </div>
-</div>
-<div class="form-group mt-3">
-    <div class="row">
-        <div class="col-5">
-            <label asp-for="LeaveRemarks" class="control-label"></label>
+</div> *@
 
-        </div>
-        <div class="col-7">
-            <input asp-for="LeaveRemarks" class="form-control" />
-            <span asp-validation-for="LeaveRemarks" class="text-danger"></span>
-        </div>
-    </div>
-</div>
-<div class="form-group form-check mt-3">
+@* <div class="form-group form-check mt-3">
     <div class="row">
         <div class="col-5">
         </div>
         <div class="col-7">
             <label class="form-check-label">
-                <input class="form-check-input" asp-for="IsApproved" /> @Html.DisplayNameFor(model => model.IsApproved)
+                <input type="checkbox"
+                       asp-for="IsApproved"
+                       value="true"
+                       data-toggle="toggle"
+                       data-on="Yes"
+                       data-off="No"
+                       data-onstyle="success"
+                       data-offstyle="danger">
             </label>
         </div>
     </div>
-</div>
-<div class="form-group mt-3">
+</div> *@
+@* <div class="form-group mt-3">
     <div class="row">
         <div class="col-5">
             <label asp-for="ApprovedByUserName" class="control-label"></label>
@@ -55,8 +51,8 @@
             <span asp-validation-for="ApprovedByUserName" class="text-danger"></span>
         </div>
     </div>
-</div>
-<div class="form-group mt-3">
+</div> *@
+@* <div class="form-group mt-3">
     <div class="row">
         <div class="col-5">
             <label asp-for="ApprovedDate" class="control-label"></label>
@@ -68,7 +64,7 @@
             <span asp-validation-for="ApprovedDate" class="text-danger"></span>
         </div>
     </div>
-</div>
+</div> *@
 <div class="form-group mt-3">
     <div class="row">
         <div class="col-5">
@@ -92,6 +88,18 @@
         </div>
     </div>
 
+</div>
+<div class="form-group mt-3">
+    <div class="row">
+        <div class="col-5">
+            <label asp-for="LeaveRemarks" class="control-label"></label>
+
+        </div>
+        <div class="col-7">
+            <textarea asp-for="LeaveRemarks" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="LeaveRemarks" class="text-danger"></span>
+        </div>
+    </div>
 </div>
 <div class="form-group row mt-3">
     <label class="col-5"></label>

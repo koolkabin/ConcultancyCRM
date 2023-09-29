@@ -1,13 +1,13 @@
-﻿@model ConcultancyCRM.Models.AssestCategory
+﻿@model ConcultancyCRM.Models.AssetsCategory
 
 @{
     var _ActiveSession = SessionHelper.GetSession(Context);
     ViewData["Title"] = "Create";
 }
-<h1 class="text-left">
+<h3 class="text-left">
     Assets Category Detail [@Model.Title]
     <div class="float-end">
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
             <ion-icon name="create-outline"></ion-icon>
             Edit
         </a>
@@ -16,11 +16,8 @@
             Back To List
         </a>
     </div>
-</h1>
+</h3>
 <hr />
-<div class="row">
-    <div class="col-md-5">
-        @Html.Raw(TempDataHelper.ShowMsg(TempData))
-        @Html.DisplayForModel()
-    </div>
-</div>
+@Html.Raw(TempDataHelper.ShowMsg(TempData))
+@Html.DisplayForModel()
+

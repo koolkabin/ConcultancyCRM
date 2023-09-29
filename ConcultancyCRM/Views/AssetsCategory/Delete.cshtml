@@ -1,10 +1,11 @@
-﻿@model ConcultancyCRM.Models.LeaveRequest
+﻿@model ConcultancyCRM.Models.AssetsCategory
 
 @{
+    var _ActiveSession = SessionHelper.GetSession(Context);
     ViewData["Title"] = "Delete";
 }
 <h3 class="text-left">
-   Delete Leave Request
+    Delete  Assets Category  [@Model.Title]
     <div class="float-end">
         <a asp-action="Edit" class="btn btn-warning" asp-route-id="@(Model?.Id)">
             <ion-icon name="create-outline"></ion-icon>
@@ -18,12 +19,13 @@
 </h3>
 <hr />
 <h3>Are you sure you want to delete this?</h3>
-@Html.Raw(TempDataHelper.ShowMsg(TempData))
-@Html.DisplayForModel()
+
+        @Html.Raw(TempDataHelper.ShowMsg(TempData))
+        @Html.DisplayForModel()
 <form asp-action="Delete">
     <input type="hidden" asp-for="Id" />
     <button type="submit" value="Delete" class="btn btn-danger">
         <ion-icon name="trash-outline"></ion-icon>
         Delete
-    </button> 
+    </button>
 </form>

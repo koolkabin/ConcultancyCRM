@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
     int sn = 1;
 }
-<h1 class="text-left">
+<h3 class="text-left">
     Employee List
     <div class="float-end">
         <a asp-action="Create" class="btn btn-success">
@@ -12,7 +12,7 @@
             Create
         </a>
     </div>
-</h1>
+</h3>
 <hr />
 
 @Html.Raw(TempDataHelper.ShowMsg(TempData))

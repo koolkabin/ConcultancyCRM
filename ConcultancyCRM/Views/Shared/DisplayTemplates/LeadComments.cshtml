@@ -1,0 +1,33 @@
+﻿@model LeadComments
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th class="text-right">LeadInfoId:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.LeadInfoId)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Status:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Status)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">TxnDate</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.TxnDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">EmployeeID</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.EmployeeID)</td>
+                </tr>
+                  <tr>
+                    <th class="text-right">EmployeeName</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.EmpName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Description</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Description)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

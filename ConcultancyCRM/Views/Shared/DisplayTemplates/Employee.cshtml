@@ -1,0 +1,41 @@
+﻿@model Employee
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th class="text-right">Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Name)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Address:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Address)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Mobile:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Mobile)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Email:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Email)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Join Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.JoinDate)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Is Admin:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.IsAdmin)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Is Sale Representative:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.IsSalesRepresentative)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Status:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Status)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

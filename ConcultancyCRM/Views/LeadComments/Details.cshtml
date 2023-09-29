@@ -3,62 +3,25 @@
 @{
     ViewData["Title"] = "Details";
 }
-<h1 class="text-left">
-    Lead Comments Details
+
+<h3 class="text-left">
+    Lead Comments
     <div class="float-end">
         <a asp-action="Edit" class="btn btn-warning" asp-route-id="@(Model?.Id)">
             <ion-icon name="create-outline"></ion-icon>
             Edit
+        </a>
+        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@(Model?.Id)">
+            <ion-icon name="trash-outline"></ion-icon>
+            Delete
         </a>
         <a asp-action="Index" class="btn btn-secondary">
             <ion-icon name="arrow-back-outline"></ion-icon>
             Back To List
         </a>
     </div>
-</h1>
+</h3>
 <hr />
 
-<div>
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.TxnDate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.TxnDate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.EmpName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.EmpName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.LeadInfo)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.LeadInfo.Id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Employee)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Employee.Id)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@Html.Raw(TempDataHelper.ShowMsg(TempData))
+@Html.DisplayForModel()

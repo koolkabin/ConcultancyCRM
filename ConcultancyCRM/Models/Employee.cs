@@ -30,6 +30,7 @@ namespace ConcultancyCRM.Models
         [UIHint("YesNo")]
         public bool IsSalesRepresentative { get; set; }
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
+        public virtual ICollection<AssetsItemsAssigned> Assigned { get; set; }
         public virtual AppUserEmployeeInfo AppUserEmployeeInfo { get; set; }
     }
 }
