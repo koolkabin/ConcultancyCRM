@@ -1,21 +1,34 @@
 ﻿@model ConcultancyCRM.Models.LeaveRequest
 
 @{
+    var _ActiveSession = SessionHelper.GetSession(Context);
     ViewData["Title"] = "Details";
 }
 
 <h3 class="text-left">
-    Leave Request 
-    <div class="float-end">
-        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@(Model?.Id)">
+ @*    <h1>@(_ActiveSession.UserName)</h1> *@
+    Leave Request
+    <div class="float-end d-flex">
+        @if (!Model.IsApproved)
+        {
+            <form asp-action="ApproveLeaveRequest" method="POST">
+                <input name="id" hidden value=@(Model?.Id)>
+                <input name="userName" hidden value=@(_ActiveSession.UserName)>
+                <button type="submit" class="btn btn-success">
+                    <ion-icon name="thumbs-up-outline"></ion-icon>
+                    Approve
+                </button>
+            </form>
+        }
+        <a asp-action="Edit" class="btn btn-warning ms-2" asp-route-id="@(Model?.Id)">
             <ion-icon name="create-outline"></ion-icon>
             Edit
         </a>
-        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@(Model?.Id)">
+        <a asp-action="Delete" class="btn btn-danger ms-2" asp-route-id="@(Model?.Id)">
             <ion-icon name="trash-outline"></ion-icon>
             Delete
         </a>
-        <a asp-action="Index" class="btn btn-secondary">
+        <a asp-action="Index" class="btn btn-secondary ms-2">
             <ion-icon name="arrow-back-outline"></ion-icon>
             Back To List
         </a>

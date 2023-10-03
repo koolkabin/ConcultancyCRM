@@ -159,10 +159,20 @@ namespace ConcultancyCRM.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        //POST: ApproveLeaveRequest/id
+        public async Task<IActionResult> ApproveLeaveRequest(int id, string userName)
+        {
+            var value = _context.LeaveRequests.Find(id);
+            value.ApprovedByUserName = userName;
+            value.IsApproved = true;
+            value.ApprovedDate = DateTime.Now;  
+            _context.SaveChanges();
+            return RedirectToAction("Details", "LeaveRequests" , new { id = id });
+        }
         private bool LeaveRequestExists(int id)
         {
             return _context.LeaveRequests.Any(e => e.Id == id);
         }
-        
+
     }
 }

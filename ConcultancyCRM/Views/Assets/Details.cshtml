@@ -1,0 +1,30 @@
+﻿@model ConcultancyCRM.Models.Assets
+
+@{
+    ViewData["Title"] = "Details";
+}
+<h3 class="text-left">
+    Assets Details
+    <div class="float-end">
+
+        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@(Model?.Id)">
+            <ion-icon name="create-outline"></ion-icon>
+            Edit
+        </a>
+
+
+        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@(Model?.Id)"
+        >
+            <ion-icon name="trash-outline"></ion-icon>
+            Delete
+        </a>
+
+        <a asp-action="Index" class="btn btn-secondary">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+            Back To List
+        </a>
+    </div>
+</h3>
+<hr />
+@Html.DisplayForModel()
+

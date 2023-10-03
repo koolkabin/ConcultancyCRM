@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ConcultancyCRM.Models
 {
@@ -29,8 +30,11 @@ namespace ConcultancyCRM.Models
         public bool IsAdmin { get; set; }
         [UIHint("YesNo")]
         public bool IsSalesRepresentative { get; set; }
+        [ForeignKey("Department")]
+        public int? DepartmentId { get; set; }
+        public virtual Department Department { get; set; }
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
-        public virtual ICollection<AssetsItemsAssigned> Assigned { get; set; }
+        public virtual ICollection<AssetsItemsAssigned> AssetsItemsAssigned { get; set; }
         public virtual AppUserEmployeeInfo AppUserEmployeeInfo { get; set; }
     }
 }

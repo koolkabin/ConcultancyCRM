@@ -28,14 +28,15 @@ namespace ConcultancyCRM.Models
         public EnumHealthType Health { get; set; }
         [MaxLength(255)]
         public string Remarks { get; set; }
-        [ForeignKey("AssetCategory")]
-        public int CategoryId { get; set; }
-        public virtual AssetsCategory AssetCategory { get; set; }
-        public virtual ICollection<AssetsItemsAssigned> AssetsItemsAssigned { get; set; }
-        public DateTime CreatedDate { get; set; }
+        [ForeignKey("AssetsCategory")]
+        public int AssetsCategoryId { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
         public string CreatedName { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string UpdatedName { get; set; }
+        public virtual AssetsCategory AssetsCategory { get; set; }
+        public virtual AssetsItemsAssigned AssetsItemsAssigned { get; set; }
+
     }
     public enum EnumHealthType
     {

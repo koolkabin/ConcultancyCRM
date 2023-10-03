@@ -37,5 +37,7 @@ namespace ConcultancyCRM.Models
         public DbSet<EmployeeHRDetail> EmployeeHRDetails { get; set; }
         public DbSet<AppUserEmployeeInfo> AppUserEmployees { get; set; }
         public DbSet<AssetsCategory> AssestCategories { get; set; } 
+        public DbSet<Assets> Assets { get; set; }
+        public DbSet<Department> Department { get; set; }
     }
 }

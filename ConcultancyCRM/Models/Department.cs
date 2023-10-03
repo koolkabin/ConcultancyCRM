@@ -11,10 +11,10 @@ namespace ConcultancyCRM.Models
         public string Title { get; set; }
         [MaxLength(255)]
         public string Description { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public String CreatedName { get; set; }
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public string CreatedName { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public String UpdatedName { get; set; }
-        public virtual ICollection<AssetsItemsAssigned> AssestsItemsAssigned { get; set; }
+        public string UpdatedName { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
     }
 }

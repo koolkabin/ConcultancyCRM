@@ -1,11 +1,11 @@
-﻿@model ConcultancyCRM.Models.LeaveRequest
+﻿@model ConcultancyCRM.Models.Assets
 
 @{
     ViewData["Title"] = "Edit";
 }
 
 <h3 class="text-left">
-    Edit Leave Request
+    Edit Assets
     <div class="float-end">
         <a asp-action="Index" class="btn btn-success">
             <ion-icon name="arrow-back-outline"></ion-icon>
@@ -15,10 +15,11 @@
 </h3>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="AssetsItemsAssigned.AssetsId" />
             @Html.EditorForModel()
         </form>
     </div>

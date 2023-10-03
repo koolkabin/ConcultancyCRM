@@ -1,0 +1,77 @@
+﻿@model Assets
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th class="text-right">Assets Name:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AssetName)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Assets Tag:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AssetTag)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Serial:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Serial)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Location:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Location)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Model:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Model)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Model Number:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.ModelNumber)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Manufacturer:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Manufacturer)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">RAM:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.RAM)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Processor:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Processor)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Storage:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Storage)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Health:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Health)</td>
+                </tr>
+                 <tr>
+                    <th class="text-right">Department:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.Employee.Department.Title)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Category:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AssetsCategory.Title)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Assigned To:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.Employee.Name)</td>
+                </tr>
+                <tr>
+                    <th class="text-right">Assigned Date:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.AssignedDate)</td>
+                </tr>
+            @*     <tr>
+                    <th class="text-right">Department:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.Department.Title)</td>
+                </tr> *@
+                <tr>
+                    <th class="text-right">Remarks:</th>
+                    <td class="text-left">@Html.DisplayFor(model => model.Remarks)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

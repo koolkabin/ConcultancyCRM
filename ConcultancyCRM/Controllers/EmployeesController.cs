@@ -1,8 +1,10 @@
-﻿using ConcultancyCRM.CustomAttibutes;
+﻿
+using ConcultancyCRM.CustomAttibutes;
 using ConcultancyCRM.Models;
 using ConcultancyCRM.StaticHelpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ConcultancyCRM.Controllers
@@ -27,7 +29,7 @@ namespace ConcultancyCRM.Controllers
         // GET: Employees
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.ToListAsync());
+            return View(await _context.Employees.Include(l => l.Department).ToListAsync());
         }
 
         // GET: Employees/Details/5
@@ -38,7 +40,7 @@ namespace ConcultancyCRM.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
+            var employee = await _context.Employees.Include(x => x.Department)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {
@@ -58,6 +60,7 @@ namespace ConcultancyCRM.Controllers
                 IsSalesRepresentative = true,
                 JoinDate = DateTime.Now
             };
+            ViewData["DepartmentName"] = new SelectList(_context.Department, "Id", "Title");
             return View(data);
         }
 
@@ -144,6 +147,7 @@ namespace ConcultancyCRM.Controllers
             VMemp.Address = employee.Address;
             VMemp.Mobile = employee.Mobile;
             VMemp.Email = employee.Email;
+            VMemp.DepartmentId = employee.DepartmentId;
             VMemp.Status = employee.Status;
             VMemp.Deleted = employee.Deleted;
             VMemp.JoinDate = employee.JoinDate;
@@ -151,6 +155,7 @@ namespace ConcultancyCRM.Controllers
             VMemp.IsAdmin = employee.IsAdmin;
             VMemp.IsSalesRepresentative = employee.IsSalesRepresentative;
             VMemp.Password = null;
+            ViewData["DepartmentName"] = new SelectList(_context.Department, "Id", "Title", VMemp.DepartmentId);
             if (employee == null)
             {
                 return NotFound();
@@ -201,7 +206,7 @@ namespace ConcultancyCRM.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
+            var employee = await _context.Employees.Include(x => x.Department)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {

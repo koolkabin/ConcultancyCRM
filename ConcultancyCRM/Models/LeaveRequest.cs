@@ -11,7 +11,7 @@ namespace ConcultancyCRM.Models
         public DateTime RequestDate { get; set; }
         public string LeaveRemarks { get; set; }
         [UIHint("YesNo")]
-        public bool IsApproved { get; set; }
+        public bool IsApproved { get; set; } = false;
         public string ApprovedByUserName { get; set; }
         public DateTime? ApprovedDate { get; set; }
         public DateTime FromDate { get; set; }

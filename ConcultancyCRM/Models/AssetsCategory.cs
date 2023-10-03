@@ -16,12 +16,9 @@ namespace ConcultancyCRM.Models
         [UIHint("YesNo")]
         public bool Deleted { get; set; }
         public DateTime CreatedBy { get; set; } = DateTime.Now;
-        public DateTime CreatedName { get; set; }
-        [NotMapped]
-        public DateTime UpdatedDate { get; set; }
-        [NotMapped] 
-        public String UpdatedName { get; set; }
-        [NotMapped]
+        public string CreatedName { get; set; }
+        public DateTime UpdatedDate { get; set; } 
+        public string UpdatedName { get; set; }
         public virtual ICollection<Assets> Assets { get; set; }
 
     }

@@ -29,12 +29,13 @@
             <h5 class="card-header bg-success p-2 text-white">@Model.Name </h5>
             <div class="card-body">
                 <p class="card-text">
-                    <i class="fa fa-address">@Model.Address</i><br />
-                    <i class="fa fa-phone">@Model.Mobile</i><br />
-                    <i class="fa fa-email">@Model.Email</i>
-                    <i class="fa fa-calendar"></i>@ViewHelper.GetDate(Model.JoinDate)<br />
-                    <i class="fa fa-person">Admin: @Html.DisplayFor(x=> Model.IsAdmin)</i><br />
-                    <i class="fa fa-person">Sales Rep: @Html.DisplayFor(x=> Model.IsSalesRepresentative)</i><br />
+                    <i class="mb-0"><ion-icon name="location-outline"></ion-icon><span class="ms-1">@Model.Address</span></i><br />
+                    <i class="mb-0"><ion-icon name="call-outline"></ion-icon><span class="ms-1">@Model.Mobile</span></i><br />
+                    <i class="mb-0"><ion-icon name="mail-outline"></ion-icon><span class="ms-1">@Model.Email</span></i><br />
+                    <i class="mb-0"><ion-icon name="people-outline"></ion-icon><span class="ms-1">@Model.Department.Title</span></i><br />
+                    <i class="mb-0"><ion-icon name="calendar-number-outline"></ion-icon><span class="ms-1">@ViewHelper.GetDate(Model.JoinDate)</span></i><br />
+                    <i class="mb-0"><ion-icon name="person-outline"></ion-icon><span class="ms-1">Admin: @Html.DisplayFor(x=> Model.IsAdmin)</span></i><br />
+                    <i class="mb-0"><ion-icon name="person-outline"></ion-icon><span class="ms-1">Sales Rep: @Html.DisplayFor(x=> Model.IsSalesRepresentative)</span></i><br />
                 </p>
             </div>
             <div class="card-footer bg-success text-white">Status: @Html.DisplayFor(x=>Model.Status)</div>

@@ -1,0 +1,266 @@
+﻿@model Assets
+<div>
+    @*Assets Information*@
+    <h1 class="fs-4">Assets Information</h1>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="AssetName" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" asp-for="AssetName" class="form-control" />
+                        <span asp-validation-for="AssetName" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="AssetTag" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" asp-for="AssetTag" class="form-control" />
+                        <span asp-validation-for="AssetTag" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Serial" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Serial" class="form-control" />
+                        <span asp-validation-for="Serial" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Location" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Location" class="form-control" />
+                        <span asp-validation-for="Location" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Technical Specifications*@
+    <h1 class="fs-4 mt-4">Transcation Information</h1>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Model" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Model" type="text" class="form-control" />
+                        <span asp-validation-for="Model" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="ModelNumber" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="ModelNumber" type="text" class="form-control" />
+                        <span asp-validation-for="ModelNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Manufacturer" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Manufacturer" type="text" class="form-control" />
+                        <span asp-validation-for="Manufacturer" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="RAM" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="RAM" type="text" class="form-control" />
+                        <span asp-validation-for="RAM" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Processor" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Processor" type="text" class="form-control" />
+                        <span asp-validation-for="Processor" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Storage" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Storage" type="text" class="form-control" />
+                        <span asp-validation-for="Storage" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Status and Details*@
+    <h1 class="fs-4 mt-4">Status and Details</h1>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label asp-for="Health" class="control-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="Health" class="form-control">
+                            <option value="1">Okay</option>
+                            <option value="2">Bad</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="Remarks" class="control-label"></label>
+
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="Remarks" class="form-control" rows="2"></textarea>
+                        <span asp-validation-for="Remarks" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*Category and assignment*@
+    <h1 class="fs-4 mt-4">Categorization and Assignment</h1>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="AssetsCategoryId" class="control-label">Category</label>
+
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="AssetsCategoryId" class="form-control" asp-items="ViewBag.CategoryName"></select>
+                        <span asp-validation-for="AssetsCategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="AssetsItemsAssigned.AssignedToId"  class="control-label">Assigned To</label>
+                    </div>
+                    <div class="col-8">
+                        <select class="form-control" asp-for="AssetsItemsAssigned.AssignedToId" id="EmployeeList" asp-items="ViewBag.EmployeeName"></select>
+                        <span asp-validation-for="AssetsItemsAssigned.AssignedToId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="AssetsItemsAssigned.AssignedDate" class="control-label">Assigned Date</label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="AssetsItemsAssigned.AssignedDate" class="form-control" />
+                        <span asp-validation-for="Storage" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+ @*        <div class="col-6">
+            <div class="form-group mt-3">
+                <div class="row">
+                    <div class="col-4">
+                        <label asp-for="AssetsItemsAssigned.DepartmentId" class="control-label">Department</label>
+
+                    </div>
+                    <div class="col-8">
+                        <select asp-for="AssetsItemsAssigned.DepartmentId" class="form-control" asp-items="ViewBag.DepartmentName"></select>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div> *@
+
+    </div>
+    <div class="row mt-5">
+        <div class="col-6">
+            <div class="row">
+                <div class="col-6">
+                    <button type="submit" class="btn btn-primary w-100">
+                        <ion-icon name="add-outline"></ion-icon>
+                        Save
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="reset" class="btn btn-secondary w-100">
+                        <ion-icon name="refresh-outline"></ion-icon>
+                        Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*end*@
+</div>
+
+

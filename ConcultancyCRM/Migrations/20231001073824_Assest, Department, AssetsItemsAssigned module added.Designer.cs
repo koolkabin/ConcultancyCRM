@@ -4,6 +4,7 @@ using ConcultancyCRM.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcultancyCRM.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231001073824_Assest, Department, AssetsItemsAssigned module added")]
+    partial class AssestDepartmentAssetsItemsAssignedmoduleadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,9 +251,14 @@ namespace ConcultancyCRM.Migrations
                     b.Property<string>("CreatedName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
                     b.HasKey("AssetsId");
 
                     b.HasIndex("AssignedToId");
+
+                    b.HasIndex("DepartmentId");
 
                     b.ToTable("AssetsItemsAssigned");
                 });
@@ -355,9 +363,6 @@ namespace ConcultancyCRM.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("DepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Email")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
@@ -386,8 +391,6 @@ namespace ConcultancyCRM.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DepartmentId");
 
                     b.ToTable("Employees");
                 });
@@ -786,8 +789,8 @@ namespace ConcultancyCRM.Migrations
             modelBuilder.Entity("ConcultancyCRM.Models.AssetsItemsAssigned", b =>
                 {
                     b.HasOne("ConcultancyCRM.Models.Assets", "Assets")
-                        .WithOne("AssetsItemsAssigned")
-                        .HasForeignKey("ConcultancyCRM.Models.AssetsItemsAssigned", "AssetsId")
+                        .WithMany()
+                        .HasForeignKey("AssetsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -797,7 +800,15 @@ namespace ConcultancyCRM.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ConcultancyCRM.Models.Department", "Department")
+                        .WithMany("AssetsItemsAssigned")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Assets");
+
+                    b.Navigation("Department");
 
                     b.Navigation("Employee");
                 });
@@ -819,15 +830,6 @@ namespace ConcultancyCRM.Migrations
                     b.Navigation("Employee");
 
                     b.Navigation("LeadInfo");
-                });
-
-            modelBuilder.Entity("ConcultancyCRM.Models.Employee", b =>
-                {
-                    b.HasOne("ConcultancyCRM.Models.Department", "Department")
-                        .WithMany("Employee")
-                        .HasForeignKey("DepartmentId");
-
-                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.EmployeeHRDetail", b =>
@@ -946,11 +948,6 @@ namespace ConcultancyCRM.Migrations
                     b.Navigation("AppUserEmployeeInfo");
                 });
 
-            modelBuilder.Entity("ConcultancyCRM.Models.Assets", b =>
-                {
-                    b.Navigation("AssetsItemsAssigned");
-                });
-
             modelBuilder.Entity("ConcultancyCRM.Models.AssetsCategory", b =>
                 {
                     b.Navigation("Assets");
@@ -958,7 +955,7 @@ namespace ConcultancyCRM.Migrations
 
             modelBuilder.Entity("ConcultancyCRM.Models.Department", b =>
                 {
-                    b.Navigation("Employee");
+                    b.Navigation("AssetsItemsAssigned");
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.Employee", b =>

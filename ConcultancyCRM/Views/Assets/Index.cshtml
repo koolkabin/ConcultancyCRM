@@ -1,0 +1,148 @@
+﻿@model IEnumerable<ConcultancyCRM.Models.Assets>
+@{
+    ViewData["Title"] = "Index";
+    int sn = 1;
+}
+<h3 class="text-left">
+    Assets List
+    <div class="float-end">
+        <a asp-action="Create" class="btn btn-success">
+            <ion-icon name="add-outline"></ion-icon>
+            Create
+        </a>
+    </div>
+</h3>
+<hr />
+@Html.Raw(TempDataHelper.ShowMsg(TempData))
+<div class="table-responsive">
+    <table class="table table-stripped table-bordered dataTable" id="myTable">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>
+                    SN
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AssetName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AssetTag)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Model)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ModelNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Manufacturer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Location)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Serial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RAM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Processor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Storage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Health)
+                </th>
+                <th>
+                    Assets Category
+                </th>
+                <th>
+                    Assigned To
+                </th>
+                <th>
+                    Assigned Date
+                </th>
+                <th>
+                    Department
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Remarks)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="d-flex" style="gap:5px;">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-xs btn-warning">
+                                <ion-icon name="create-outline"></ion-icon>
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-xs btn-info">
+                                <ion-icon name="eye-outline"></ion-icon>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-xs btn-danger">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </a>
+                        </div>
+                    </td>
+                    <td>
+                        @(sn++)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssetName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssetTag)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Model)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModelNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Manufacturer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Location)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Serial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RAM)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Processor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Storage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Health)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssetsCategory.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssetsItemsAssigned.Employee.Name)
+                    </td>
+                       <td>
+                        @Html.DisplayFor(modelItem => item.AssetsItemsAssigned.AssignedDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AssetsItemsAssigned.Employee.Department.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remarks)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
