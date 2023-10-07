@@ -1,23 +1,24 @@
-﻿@model ConcultancyCRM.Models.LeadInfo
+﻿@model ConcultancyCRM.Models.AssetsItemsAssigned
 @{
     IList<Employee> Data = ViewBag.EmployeeID;
 }
-@using (Html.BeginForm("AssignLead", "LeadInfoes", FormMethod.Post))
+
+@using (Html.BeginForm("AssignItem", "Assets", FormMethod.Post))
 {
-    <input type="hidden" name="LeadInfoId" value="@Model.Id" />
+    <input type="hidden" name="AssetsId" value="@Model.AssetsId" />
     <div class="row mt-2">
         <label class="col-sm-3">Employee</label>
         <div class="col-sm-9">
-            <select id="drpEmpList" class="form-control" name="EmployeeID"
+            <select id="drpEmpList" class="form-control" name="AssignedToId"
                 asp-items="@(new SelectList(Data, "Id", "Name"))">
                 <option value="">--Select--</option>
             </select>
         </div>
     </div>
     <div class="row mt-2">
-        <label class="col-sm-3">Comments</label>
+        <label class="col-sm-3">Assigned Date</label>
         <div class="col-sm-9">
-            <textarea type="text" name="Description" class="form-control" rows="2"></textarea>
+            <input type="date" name="AssignedDate" class="form-control" />
         </div>
     </div>
     <div class="row mt-2">

@@ -7,14 +7,15 @@
     Assets Details
     <div class="float-end">
 
-        <a asp-action="Edit" class="btn btn-warning" asp-route-id="@(Model?.Id)">
+        <a asp-action="Edit" class="btn btn-warning"
+           asp-route-id="@(Model?.Id)">
             <ion-icon name="create-outline"></ion-icon>
             Edit
         </a>
 
 
-        <a asp-action="Delete" class="btn btn-danger" asp-route-id="@(Model?.Id)"
-        >
+        <a asp-action="Delete" class="btn btn-danger"
+           asp-route-id="@(Model?.Id)">
             <ion-icon name="trash-outline"></ion-icon>
             Delete
         </a>

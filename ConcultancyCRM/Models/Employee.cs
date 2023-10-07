@@ -35,6 +35,7 @@ namespace ConcultancyCRM.Models
         public virtual Department Department { get; set; }
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
         public virtual ICollection<AssetsItemsAssigned> AssetsItemsAssigned { get; set; }
+        public virtual ICollection<LeadComments> LeadComments { get; set; }
         public virtual AppUserEmployeeInfo AppUserEmployeeInfo { get; set; }
     }
 }

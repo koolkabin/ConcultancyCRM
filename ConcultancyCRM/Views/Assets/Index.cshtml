@@ -129,13 +129,13 @@
                         @Html.DisplayFor(modelItem => item.AssetsCategory.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AssetsItemsAssigned.Employee.Name)
-                    </td>
-                       <td>
-                        @Html.DisplayFor(modelItem => item.AssetsItemsAssigned.AssignedDate)
+                        @(item.AssetsItemsAssigned.LastOrDefault()?.Employee?.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.AssetsItemsAssigned.Employee.Department.Title)
+                        @(item.AssetsItemsAssigned.LastOrDefault()?.AssignedDate)
+                    </td>
+                    <td>
+                        @(item.AssetsItemsAssigned.LastOrDefault()?.Employee?.Department?.Title)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Remarks)

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic;
+﻿using ConcultancyCRM.StaticHelpers;
+using Microsoft.VisualBasic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -17,13 +18,13 @@ namespace ConcultancyCRM.Models
         [MaxLength(255)]
         public string ModelNumber { get; set; }
         [MaxLength(255)]
-        public string Manufacturer   { get; set; }
+        public string Manufacturer { get; set; }
         [MaxLength(255)]
         public string Serial { get; set; }
         [MaxLength(255)]
         public string Location { get; set; }
-        public int RAM { get; set; } 
-        public int Processor { get; set; }   
+        public int RAM { get; set; }
+        public int Processor { get; set; }
         public int Storage { get; set; }
         public EnumHealthType Health { get; set; }
         [MaxLength(255)]
@@ -35,7 +36,13 @@ namespace ConcultancyCRM.Models
         public DateTime UpdatedDate { get; set; }
         public string UpdatedName { get; set; }
         public virtual AssetsCategory AssetsCategory { get; set; }
-        public virtual AssetsItemsAssigned AssetsItemsAssigned { get; set; }
+        public virtual ICollection<AssetsItemsAssigned> AssetsItemsAssigned { get; set; }
+        public Assets()
+        {
+            AssetsItemsAssigned = new HashSet<AssetsItemsAssigned>();
+        }
+        //[NotMapped]
+        public bool CanAssign(SessionInfo _ActiveSession) => _ActiveSession.IsGeneralAdmin;
 
     }
     public enum EnumHealthType

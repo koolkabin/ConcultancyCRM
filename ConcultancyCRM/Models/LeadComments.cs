@@ -6,11 +6,12 @@ namespace ConcultancyCRM.Models
     public class LeadComments
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [ForeignKey("LeadInfo")]
         public int LeadInfoId { get; set; }
+        [UIHint("LeadStatus")]
         public enumLeadStatus Status { get; set; }
         public DateTime TxnDate { get; set; }
         [ForeignKey("Employee")]

@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using NuGet.Protocol;
 
 namespace ConcultancyCRM.Controllers
 {
-    public class AssetsController : Controller
+    public class AssetsController : _ABSAuthenticatedController
     {
         private readonly MyDBContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -26,9 +25,8 @@ namespace ConcultancyCRM.Controllers
         {
             var myDBContext = _context.Assets
             .Include(l => l.AssetsCategory)
-            .Include(l => l.AssetsItemsAssigned)
-                .ThenInclude(l => l.Employee)
-                .ThenInclude(l => l.Department);
+            .Include(l => l.AssetsItemsAssigned)//.Select(x => x.Employee.Department))
+            ;
             return View(await myDBContext.ToListAsync());
         }
         // GET: Assets
@@ -74,7 +72,7 @@ namespace ConcultancyCRM.Controllers
             {
                 return NotFound();
             }
-
+            ViewBag.EmployeeId = _context.Employees.ToList();
             return View(assets);
         }
         // POST: Employees/Delete/5
@@ -110,7 +108,7 @@ namespace ConcultancyCRM.Controllers
                 return NotFound();
             }
 
-            ViewData["EmployeeName"] = new SelectList(_context.Employees, "Id", "Name", asset.AssetsItemsAssigned.AssignedToId);
+            ViewData["EmployeeName"] = new SelectList(_context.Employees, "Id", "Name");
             /* ViewData["DepartmentName"] = new SelectList(_context.Department, "Id", "Title", asset.AssetsItemsAssigned.DepartmentId);*/
             ViewData["CategoryName"] = new SelectList(_context.AssestCategories, "Id", "Title", asset.AssetsCategoryId);
             return View(asset);
@@ -173,6 +171,20 @@ namespace ConcultancyCRM.Controllers
         {
             return _context.Assets.Any(e => e.Id == id);
         }
+        [HttpPost]
+        public async Task<IActionResult> AssignItem(AssetsItemsAssigned Data)
+        {
+            var ItemDetail = _context.Assets.Find(Data.AssetsId);
+            if (ItemDetail == null)
+            {
+                throw new Exception("Invalid Assets");
+            }
+            Data.CreatedDate = DateTime.Now;
+            Data.CreatedName = _ActiveSession.UserName;
+            _context.AssetsItemsAssigned.Add(Data);
+            await _context.SaveChangesAsync();
 
+            return RedirectToAction("Details", new { id = Data.AssetsId });
+        }
     }
 }

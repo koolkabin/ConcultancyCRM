@@ -42,28 +42,31 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>@(sn++)</td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(sn++)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
                     @ViewHelper.GetDate(item.TxnDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmpName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LeadInfo.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Employee.Id)
-            </td>
-            <td>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpName)
+                </td>
+                <td>
+                    <a href="@Url.Action("Details", "LeadInfoes", new{id=item.Id})" target="_blank">
+                        @Html.DisplayFor(modelItem => item.LeadInfo.Id)
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.Name)
+                </td>
+                <td>
                     <div class="d-flex" style="gap:5px;">
                         <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
                             <ion-icon name="create-outline"></ion-icon>
@@ -75,9 +78,9 @@
                             <ion-icon name="trash-outline"></ion-icon>
                         </a>
                     </div>
-            </td>
-        </tr>
-}
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
 @section Scripts{

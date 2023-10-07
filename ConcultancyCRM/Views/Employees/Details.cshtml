@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    int i = 1;
 }
 
 <h3 class="text-left">
@@ -19,26 +20,122 @@
 </h3>
 <hr />
 
-
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="~/images/person.jpg" class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-            <h5 class="card-header bg-success p-2 text-white">@Model.Name </h5>
-            <div class="card-body">
-                <p class="card-text">
-                    <i class="mb-0"><ion-icon name="location-outline"></ion-icon><span class="ms-1">@Model.Address</span></i><br />
-                    <i class="mb-0"><ion-icon name="call-outline"></ion-icon><span class="ms-1">@Model.Mobile</span></i><br />
-                    <i class="mb-0"><ion-icon name="mail-outline"></ion-icon><span class="ms-1">@Model.Email</span></i><br />
-                    <i class="mb-0"><ion-icon name="people-outline"></ion-icon><span class="ms-1">@Model.Department.Title</span></i><br />
-                    <i class="mb-0"><ion-icon name="calendar-number-outline"></ion-icon><span class="ms-1">@ViewHelper.GetDate(Model.JoinDate)</span></i><br />
-                    <i class="mb-0"><ion-icon name="person-outline"></ion-icon><span class="ms-1">Admin: @Html.DisplayFor(x=> Model.IsAdmin)</span></i><br />
-                    <i class="mb-0"><ion-icon name="person-outline"></ion-icon><span class="ms-1">Sales Rep: @Html.DisplayFor(x=> Model.IsSalesRepresentative)</span></i><br />
-                </p>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="card mb-3">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="~/images/person.jpg" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <h5 class="card-header bg-success p-2 text-white">@Model.Name </h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <i class="mb-0"><ion-icon name="location-outline"></ion-icon><span class="ms-1">@Model.Address</span></i><br />
+                            <i class="mb-0"><ion-icon name="call-outline"></ion-icon><span class="ms-1">@Model.Mobile</span></i><br />
+                            <i class="mb-0"><ion-icon name="mail-outline"></ion-icon><span class="ms-1">@Model.Email</span></i><br />
+                            <i class="mb-0"><ion-icon name="people-outline"></ion-icon><span class="ms-1">@(Model.Department?.Title)</span></i><br />
+                            <i class="mb-0"><ion-icon name="calendar-number-outline"></ion-icon><span class="ms-1">@ViewHelper.GetDate(Model.JoinDate)</span></i><br />
+                            <i class="mb-0"><ion-icon name="person-outline"></ion-icon><span class="ms-1">Admin: @Html.DisplayFor(x=> Model.IsAdmin)</span></i><br />
+                            <i class="mb-0"><ion-icon name="person-outline"></ion-icon><span class="ms-1">Sales Rep: @Html.DisplayFor(x=> Model.IsSalesRepresentative)</span></i><br />
+                        </p>
+                    </div>
+                    <div class="card-footer bg-success text-white">Status: @Html.DisplayFor(x=>Model.Status)</div>
+                </div>
             </div>
-            <div class="card-footer bg-success text-white">Status: @Html.DisplayFor(x=>Model.Status)</div>
         </div>
+        <h4>Assigned Assets</h4>
+        <table class="table table-stripped table-bordered">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Asset Ref</th>
+                    <th>Date</th>
+                    <th>Assigned By</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.AssetsItemsAssigned)
+                {
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Assets", new{id=item.AssetsId})" target="_blank">
+                                @item.AssetsId
+                            </a>
+                        </td>
+                        <td>@ViewHelper.GetDate(item.AssignedDate)</td>
+                        <td>@item.CreatedName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-7">
+        <h4>Assigned Leads</h4>
+        <table class="table table-stripped table-bordered">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Lead Ref</th>
+                    <th>Vendor</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    i = 1;
+                }
+                @foreach (var item in Model.AssignedLeads)
+                {
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>
+                            <a href="@Url.Action("Details", "LeadInfoes", new{id=item.LeadInfoId})" target="_blank">
+                                @item.LeadInfoId
+                            </a>
+                        </td>
+                        <td>@(item.LeadInfo?.VendorName)</td>
+                        <td>
+                            @{
+                                var stat = item.LeadInfo == null ? enumLeadStatus.Pending : item.LeadInfo.LeadStatus;
+                            }
+                            @Html.DisplayFor(x=>stat)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h4>Lead Activities</h4>
+        <table class="table table-stripped table-bordered">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Lead Ref</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    i = 1;
+                }
+                @foreach (var item in Model.LeadComments)
+                {
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>
+                            <a href="@Url.Action("Details", "LeadInfoes", new{id=item.LeadInfoId})" target="_blank">
+                                @item.LeadInfoId
+                            </a>
+                        </td>
+                        <td>@ViewHelper.GetDate(item.TxnDate)</td>
+                        <td>@Html.DisplayFor(x=>item.Status)</td>
+                        <td>@item.Description</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>

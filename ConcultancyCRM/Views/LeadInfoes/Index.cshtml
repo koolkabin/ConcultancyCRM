@@ -54,21 +54,23 @@
                 <tr>
                     <td>
                         <div class="d-flex" style="gap:5px;">
-                            @if (item.CanEdit(_ActiveSession))
-                            {
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
-                                    <ion-icon name="create-outline"></ion-icon>
+                            <span class="btn-group">
+                                @if (item.CanEdit(_ActiveSession))
+                                {
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">
+                                        <ion-icon name="create-outline"></ion-icon>
+                                    </a>
+                                }
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
+                                    <ion-icon name="eye-outline"></ion-icon>
                                 </a>
-                            }
-                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">
-                                <ion-icon name="eye-outline"></ion-icon>
-                            </a>
-                            @if (item.CanDelete(_ActiveSession))
-                            {
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
-                                    <ion-icon name="trash-outline"></ion-icon>
-                                </a>
-                            }
+                                @if (item.CanDelete(_ActiveSession))
+                                {
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">
+                                        <ion-icon name="trash-outline"></ion-icon>
+                                    </a>
+                                }
+                            </span>
                         </div>
                     </td>
                     <td>@(sn++)</td>

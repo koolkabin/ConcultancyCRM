@@ -45,7 +45,16 @@ namespace ConcultancyCRM.Controllers
             {
                 return NotFound();
             }
-
+            _context.Entry(leadInfo).Collection(x => x.AssignedLeads).Load();
+            _context.Entry(leadInfo).Collection(x => x.LeadComments).Load();
+            // Explicitly load the department for each child
+            //foreach (var child in leadInfo.LeadComments)
+            //{
+            //    _context.Entry(child)
+            //        .Reference(c => c.Employee)
+            //        .Load();
+            //}
+            ViewBag.EmployeeId = _context.Employees.ToList();// new SelectList(_context.Employees.ToList(), "Id", "Name");
             return View(leadInfo);
         }
 
@@ -181,14 +190,14 @@ namespace ConcultancyCRM.Controllers
             {
                 throw new Exception("Sales Representative can comment on leads they are assigned to.");
             }
-            Data.EmployeeID = _ActiveSession.EmployeeId;
-            Data.EmpName = _ActiveSession.EmpName;
+            Data.EmployeeID = _ActiveSession.IsSuperAdmin ? Data.EmployeeID : _ActiveSession.EmployeeId;
+            Data.EmpName = _ActiveSession.IsSuperAdmin ? "SuperAdmin" : _ActiveSession.EmpName;
             Data.TxnDate = DateTime.Now;
             oldLead.LeadComments.Add(Data);
             oldLead.LeadStatus = Data.Status;
             _context.Entry(oldLead).State = EntityState.Modified;
             await _context.SaveChangesAsync();
-            return RedirectToAction("Details", new { id = Data.LeadInfo });
+            return RedirectToAction("Details", new { id = oldLead.Id });
         }
         public async Task<IActionResult> AssignLead(AssignedLeads Data)
         {
@@ -210,15 +219,15 @@ namespace ConcultancyCRM.Controllers
                 oldLead.AssignedLeads.Add(Data);
                 _context.Entry(oldLead).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
+                Data.Id = oldLead.Id;
                 TempDataHelper.SetMsg(TempData, true, "Lead Assigned Successfully");
 
             }
             catch (Exception ex)
             {
-
                 TempDataHelper.SetMsg(TempData, false, ex.Message);
             }
-            return RedirectToAction("Details", new { id = Data.LeadInfo });
+            return RedirectToAction("Details", new { id = Data.Id });
         }
     }
 }
