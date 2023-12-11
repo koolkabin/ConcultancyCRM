@@ -1,0 +1,24 @@
+﻿@model enumLeadStatus?
+@if (Model.HasValue)
+{
+    switch (Model.Value)
+    {
+        case enumLeadStatus.Pending:
+            <span class="badge bg-info">Pending</span>
+            break;
+        case enumLeadStatus.Lost:
+            <span class="badge bg-danger">Lost</span>
+            break;
+        case enumLeadStatus.Won:
+            <span class="badge bg-success">Won</span>
+            break;
+        default:
+            <span class="badge bg-wargning">Hold</span>
+            break;
+
+    }
+}
+else
+{
+    <span class="badge bg-danger">Pending</span>
+}

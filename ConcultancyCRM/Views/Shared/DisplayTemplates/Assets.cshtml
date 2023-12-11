@@ -1,4 +1,7 @@
 ﻿@model Assets
+@{
+    int i = 1;
+}
 <div class="row">
     <div class="col-6">
         <table class="table table-bordered table-striped">
@@ -48,24 +51,25 @@
                     <td class="text-left">@Html.DisplayFor(model => model.Health)</td>
                 </tr>
                  <tr>
-                    <th class="text-right">Department:</th>
-                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.Employee.Department.Title)</td>
-                </tr>
-                <tr>
                     <th class="text-right">Category:</th>
                     <td class="text-left">@Html.DisplayFor(model => model.AssetsCategory.Title)</td>
                 </tr>
+             @*   <tr>
+                    <th class="text-right">Department:</th>
+                    <td class="text-left">@(Model.AssetsItemsAssigned.LastOrDefault()?.Employee?.Department?.Title)</td>
+                </tr>
+               
                 <tr>
                     <th class="text-right">Assigned To:</th>
-                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.Employee.Name)</td>
+                    <td class="text-left">@(Model.AssetsItemsAssigned.LastOrDefault()?.Employee?.Name)</td>
                 </tr>
                 <tr>
                     <th class="text-right">Assigned Date:</th>
-                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.AssignedDate)</td>
-                </tr>
-            @*     <tr>
-                    <th class="text-right">Department:</th>
-                    <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.Department.Title)</td>
+                    <td class="text-left">@ViewHelper.GetDate(Model.AssetsItemsAssigned.LastOrDefault()?.AssignedDate)</td>
+                </tr>*@
+                @*     <tr>
+                <th class="text-right">Department:</th>
+                <td class="text-left">@Html.DisplayFor(model => model.AssetsItemsAssigned.Department.Title)</td>
                 </tr> *@
                 <tr>
                     <th class="text-right">Remarks:</th>
@@ -73,5 +77,44 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+    <div class="col-sm-6">
+        <h4>Assignment History</h4>
+        <table class="table table-bordered table-stripped">
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>Employee</th>
+                    <th>Date</th>
+                    <th>Assigned By</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.AssetsItemsAssigned)
+                {
+
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Employees", new{id=item.AssignedToId})">
+                            @(item.Employee.Name)
+
+                            </a>
+                            </td>
+                        <td>@ViewHelper.GetDate(item.AssignedDate)</td>
+                        <td>@(item.CreatedName)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.CanAssign(SessionHelper.GetSession(Context)))
+        {
+            <h4>New Assignment</h4>
+           
+                var Data = new AssetsItemsAssigned(){
+AssetsId = Model.Id
+                };
+                Html.RenderPartial("Partial/_NewAssetAssginment", Data);
+        }
     </div>
 </div>

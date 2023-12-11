@@ -4,6 +4,7 @@ using ConcultancyCRM.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConcultancyCRM.Migrations
 {
     [DbContext(typeof(MyDBContext))]
-    partial class MyDBContextModelSnapshot : ModelSnapshot
+    [Migration("20231007100242_AddPKLeadComments")]
+    partial class AddPKLeadComments
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,12 +236,6 @@ namespace ConcultancyCRM.Migrations
 
             modelBuilder.Entity("ConcultancyCRM.Models.AssetsItemsAssigned", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("AssetsId")
                         .HasColumnType("int");
 
@@ -254,9 +251,7 @@ namespace ConcultancyCRM.Migrations
                     b.Property<string>("CreatedName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("AssetsId");
+                    b.HasKey("AssetsId");
 
                     b.HasIndex("AssignedToId");
 
@@ -797,8 +792,8 @@ namespace ConcultancyCRM.Migrations
             modelBuilder.Entity("ConcultancyCRM.Models.AssetsItemsAssigned", b =>
                 {
                     b.HasOne("ConcultancyCRM.Models.Assets", "Assets")
-                        .WithMany("AssetsItemsAssigned")
-                        .HasForeignKey("AssetsId")
+                        .WithOne("AssetsItemsAssigned")
+                        .HasForeignKey("ConcultancyCRM.Models.AssetsItemsAssigned", "AssetsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -863,7 +858,7 @@ namespace ConcultancyCRM.Migrations
             modelBuilder.Entity("ConcultancyCRM.Models.LeadComments", b =>
                 {
                     b.HasOne("ConcultancyCRM.Models.Employee", "Employee")
-                        .WithMany("LeadComments")
+                        .WithMany()
                         .HasForeignKey("EmployeeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -979,8 +974,6 @@ namespace ConcultancyCRM.Migrations
                     b.Navigation("AssetsItemsAssigned");
 
                     b.Navigation("AssignedLeads");
-
-                    b.Navigation("LeadComments");
                 });
 
             modelBuilder.Entity("ConcultancyCRM.Models.LeadInfo", b =>

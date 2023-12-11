@@ -1,15 +1,30 @@
 ﻿@model ConcultancyCRM.Models.LeadInfo
+@{
+    IList<Employee> Data = ViewBag.EmployeeID;
+    IList<enumLeadStatus> Stat = Enum.GetValues<enumLeadStatus>();
+    var _Auth = SessionHelper.GetSession(Context);
+}
 @using (Html.BeginForm("SaveComment", "LeadInfoes", FormMethod.Post))
 {
     <input type="hidden" name="LeadInfoId" value="@Model.Id" />
+    @if (_Auth.IsSuperAdmin)
+    {
+        <div class="row mt-2">
+            <label class="col-sm-3 mt-2">Employee</label>
+            <div class="col-sm-9">
+                <select id="drpEmpList" class="form-control" name="EmployeeID"
+                asp-items="@(new SelectList(Data, "Id", "Name"))">
+                    <option value="">--Select--</option>
+                </select>
+            </div>
+        </div>
+    }
     <div class="row mt-2">
         <label class="col-sm-3 mt-2">Status</label>
         <div class="col-sm-9">
-            <select name="Status" class="form-control">
-                <option value="0">Pending</option>
-                <option value="1">Won</option>
-                <option value="2">Lost</option>
-                <option value="3">Hold</option>
+            <select name="Status" class="form-control"
+                asp-items="Html.GetEnumSelectList<enumLeadStatus>()">
+                <option value="">--Select--</option>
             </select>
         </div>
     </div>

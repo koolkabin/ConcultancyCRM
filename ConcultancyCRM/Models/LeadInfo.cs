@@ -57,6 +57,7 @@ namespace ConcultancyCRM.Models
         public string VoucherNumber { get; set; }
         [MaxLength(255)]
         public string Delivery { get; set; }
+        [UIHint("LeadStatus")]
         public enumLeadStatus LeadStatus { get; set; } = enumLeadStatus.Pending;
         public virtual ICollection<AssignedLeads> AssignedLeads { get; set; }
         public virtual ICollection<LeadComments> LeadComments { get; set; }
@@ -65,7 +66,8 @@ namespace ConcultancyCRM.Models
         [NotMapped]
         public AssignedLeads LastRecord => AssignedLeads.Any() ? AssignedLeads.Last() : new AssignedLeads();
         //[NotMapped]
-        public bool CanComment(int EmpId) => LastRecord.EmployeeId == EmpId;
+        public bool CanComment(SessionInfo _ActiveSession) => IsLeadActive &&
+            (_ActiveSession.IsGeneralAdmin || LastRecord.EmployeeId == _ActiveSession.EmployeeId);
         [NotMapped]
         public bool IsLeadComplete => LeadStatusHelper.IsLeadCompleted(LeadStatus);
         [NotMapped]

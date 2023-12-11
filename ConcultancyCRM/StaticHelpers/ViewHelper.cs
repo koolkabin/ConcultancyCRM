@@ -8,6 +8,10 @@ namespace ConcultancyCRM.StaticHelpers
         {
             return date.ToString("yyyy/MM/dd");
         }
+        public static string GetDate(DateTime? date)
+        {
+            return date.HasValue ? date.Value.ToString("yyyy/MM/dd") : "";
+        }
     }
 
     public class FlashBag

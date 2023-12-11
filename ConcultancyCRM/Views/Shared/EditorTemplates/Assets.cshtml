@@ -198,50 +198,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
-            <div class="form-group mt-3">
-                <div class="row">
-                    <div class="col-4">
-                        <label asp-for="AssetsItemsAssigned.AssignedToId"  class="control-label">Assigned To</label>
-                    </div>
-                    <div class="col-8">
-                        <select class="form-control" asp-for="AssetsItemsAssigned.AssignedToId" id="EmployeeList" asp-items="ViewBag.EmployeeName"></select>
-                        <span asp-validation-for="AssetsItemsAssigned.AssignedToId" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
+      
     </div>
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group mt-3">
-                <div class="row">
-                    <div class="col-4">
-                        <label asp-for="AssetsItemsAssigned.AssignedDate" class="control-label">Assigned Date</label>
-                    </div>
-                    <div class="col-8">
-                        <input asp-for="AssetsItemsAssigned.AssignedDate" class="form-control" />
-                        <span asp-validation-for="Storage" class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
- @*        <div class="col-6">
-            <div class="form-group mt-3">
-                <div class="row">
-                    <div class="col-4">
-                        <label asp-for="AssetsItemsAssigned.DepartmentId" class="control-label">Department</label>
-
-                    </div>
-                    <div class="col-8">
-                        <select asp-for="AssetsItemsAssigned.DepartmentId" class="form-control" asp-items="ViewBag.DepartmentName"></select>
-                        <span class="text-danger"></span>
-                    </div>
-                </div>
-            </div>
-        </div> *@
-
-    </div>
+  
     <div class="row mt-5">
         <div class="col-6">
             <div class="row">

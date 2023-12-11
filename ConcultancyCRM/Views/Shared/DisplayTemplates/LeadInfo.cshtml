@@ -136,7 +136,12 @@
                     <tr>
                         <td>@item.Id</td>
                         <td>@ViewHelper.GetDate(item.AssignedDate)</td>
-                        <td>@item.Employee.Name</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Employees", new{id=item.EmployeeId})">
+                                @(item.Employee.Name)
+
+                            </a>
+                        </td>
                     </tr>
                 }
             </table>
@@ -168,14 +173,18 @@
                     <tr>
                         <td>@item.Id</td>
                         <td>@ViewHelper.GetDate(item.TxnDate)</td>
-                        <td>@item.EmpName</td>
-                        <td>@item.Status</td>
+                        <td>
+                            <a href="@Url.Action("Details", "Employee", new{id=item.EmployeeID})">
+                                @item.EmpName
+                            </a>
+                        </td>
+                        <td>@Html.DisplayFor(x=> item.Status)</td>
                         <td>@item.Description</td>
                     </tr>
                 }
             </table>
         </section>
-        @if (Model.CanComment(_ActiveSession.EmployeeId))
+        @if (Model.CanComment(_ActiveSession))
         {
 
             <section id="newLeadComment" class="mt-4">

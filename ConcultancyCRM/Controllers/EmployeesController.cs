@@ -40,12 +40,18 @@ namespace ConcultancyCRM.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees.Include(x => x.Department)
+            var employee = await _context.Employees
+                .Include(x => x.Department)
+                .Include(x => x.AssignedLeads)
+                .Include(x => x.LeadComments)
+                .Include(x => x.AssetsItemsAssigned)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (employee == null)
             {
                 return NotFound();
             }
+
+
 
             return View(employee);
         }

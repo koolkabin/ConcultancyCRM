@@ -53,13 +53,12 @@ namespace ConcultancyCRM.Controllers
             {
                 throw new Exception("Invalid Old Lead.");
             }
-            if (!_ActiveSession.IsGeneralAdmin)
+
+            if (!oldLead.CanComment(_ActiveSession))
             {
-                if (!oldLead.CanComment(_ActiveSession.EmployeeId))
-                {
-                    throw new Exception("Permission Error. Sales representative not assigned");
-                }
+                throw new Exception("Permission Error. Sales representative not assigned");
             }
+
             Data.EmployeeID = _ActiveSession.EmployeeId;
             Data.EmpName = _ActiveSession.EmpName;
             Data.TxnDate = DateTime.Now;
